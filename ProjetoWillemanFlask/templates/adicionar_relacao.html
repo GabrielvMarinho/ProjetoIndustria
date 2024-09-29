@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} Add Relação {% endblock %}
+
+{% block content %}
+
+{% for i in maquinas %}
+    <p>{{i.nome}}<button onclick = "add_relacao({{i.id}})">add relação</button>1</p>
+    
+
+{% endfor %}
+    <script>
+        function add_relacao(id){
+            fetch("{{url_for('add_rel', id = id)}}"+id,{
+                method:"POST"
+            }).then(response =>{
+                if (response.ok){
+                    window.location.reload();
+                }
+                else{
+                    console.log("ocorreu algum erro");
+                }
+            });
+        }
+    </script>
+{% endblock %}

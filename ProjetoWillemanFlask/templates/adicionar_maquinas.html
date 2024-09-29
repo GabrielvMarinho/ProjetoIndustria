@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Add Máquinas {% endblock %}
+
+{% block content %}
+
+
+<h1>form cria maquina</h1>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{form.nome.label}} <br>
+        {{form.nome()}}
+    </p> 
+
+    <p> {{form.submit()}} </p>
+</form>
+
+{% endblock %}
