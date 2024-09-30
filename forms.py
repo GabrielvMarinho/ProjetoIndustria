@@ -13,6 +13,7 @@ class cadastroMaquina(FlaskForm):
 class dadosMaquina(FlaskForm):# BIANCA precisa adicionar valor máximo e valor mínimo, tambpem precisa adicionar a msg para cada
     nomedado = StringField("dado")
     submit = SubmitField('criar')
+    valorMaximo = IntegerField ("max")
 
     # minMaquina = IntegerField('Min')
     # msgErro = StringField('Mensagem de erro')

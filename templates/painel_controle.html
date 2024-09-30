@@ -19,14 +19,18 @@
     async function buscarDados() {
         const resp = await fetch("/retornar_dados"); // mudar no deploy
         const dados = await resp.json();
-        const h1 = document.getElementById("dado");
         console.log(dados);
         
-        h1.innerText = "";
         Object.keys(dados).forEach(i => {
-            
+            const h1 = document.createElement("h1")
+            h1.innerText = "";
+
+            h1.innerText += i + " - \n";
             console.log(i);
-            h1.innerText += i + " - " + dados[i] + "\n";
+
+            document.body.appendChild(h1)
+            const h2 = document.createElement("h2")
+
         });
     }
 
