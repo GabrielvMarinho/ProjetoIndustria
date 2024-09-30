@@ -68,7 +68,7 @@ def register_routes(app, db):
     @app.route("/sair")
     @login_required
     def sair():
-        logout_user
+        logout_user()
         return redirect(url_for("login"))
     
     @app.route('/signup', methods=["GET", "POST"])
