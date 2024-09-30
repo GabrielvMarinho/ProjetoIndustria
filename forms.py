@@ -10,7 +10,7 @@ class cadastroMaquina(FlaskForm):
     nome = StringField('nome da maquina')
     submit = SubmitField('criar')
 
-class dadosMaquina(FlaskForm):
+class dadosMaquina(FlaskForm):# BIANCA precisa adicionar valor máximo e valor mínimo, tambpem precisa adicionar a msg para cada
     nomedado = StringField("dado")
     submit = SubmitField('criar')
 

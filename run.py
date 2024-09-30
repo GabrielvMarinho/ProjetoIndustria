@@ -2,12 +2,12 @@ from app import create_app, db
 import threading
 from random import randint
 from flask_socketio import SocketIO
-
+from time import sleep
+from models import Maquina
+from flask_login import current_user
 app = create_app()
 socketio = SocketIO(app)
 
-from time import sleep
-from models import Maquina
 
 def tarefa():
     while True:
@@ -17,9 +17,9 @@ def tarefa():
                 for chave in maquina.dadosDict:
                     maquina.dadosDict[chave] = randint(1, 100)
             db.session.commit()
-
         socketio.emit('atualizar_dados')
-        sleep(10)
+        sleep(1)
+
 
 
 

@@ -2,9 +2,24 @@ from flask import render_template, request, redirect, url_for, jsonify
 from models import Operador, Maquina
 from forms import SignUpForm, dadosMaquina, cadastroMaquina
 from flask_login import current_user, logout_user, login_user, login_required
+
+
+
 def register_routes(app, db):
 
 
+    
+    
+
+    @app.route("/painel_controle")
+    @login_required
+    def painel_controle():
+        return render_template("painel_controle.html")
+
+
+    @app.route("/retornar_user")
+    def retornar_user():
+        return current_user
     #routes relacionado aos atributos -----------------------------------------------------
     @app.route("/lista_maquinas_atributos")
     @login_required
@@ -20,17 +35,16 @@ def register_routes(app, db):
             maquina.dadosDict[form.nomedado.data] = 100
             db.session.commit()
             return redirect(url_for("pagina_principal"))
-        return render_template('adicionar_dados.html', form=form)  
+        return render_template('adicionar_atributo.html', form=form)  
     #------------------------------------------------------------------------
 
     @app.route("/retornar_dados")
+    @login_required
     def retornar_dados():
         dado = Maquina.query.get(1).dadosDict
         return jsonify(dado)
 
-    @app.route("/painel_controle")
-    def painel_controle():
-        return render_template("painel_controle.html")
+    
 
 
 
@@ -38,11 +52,13 @@ def register_routes(app, db):
     
     #mostra a lista de máquinas para adicionar a relação
     @app.route("/adicionar_relação", methods=["GET", "POST"])
+    @login_required
     def add_relacao():
         maquinas = Maquina.query.all()
         return render_template("adicionar_relacao.html", maquinas = maquinas)
     #adiciona a relação de fato
     @app.route("/add_rel<id>", methods=["GET", "POST"])
+    @login_required
     def add_rel(id):
         maquina = Maquina.query.filter_by(id = id).first()
         current_user.maquinas.append(maquina)# cria a relação de maquina e usuário
