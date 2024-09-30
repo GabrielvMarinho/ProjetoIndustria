@@ -4,6 +4,11 @@ from forms import SignUpForm, dadosMaquina, cadastroMaquina
 from flask_login import current_user, logout_user, login_user, login_required
 def register_routes(app, db):
 
+    #TESTE TESTE TESTE
+    @app.route("/teste")
+    def teste():
+        maquinas = Maquina.query.all()
+        return render_template("teste.html", maquinas = maquinas)
    
 
     @app.route("/adicionando_atributos", methods=["GET", "POST"])

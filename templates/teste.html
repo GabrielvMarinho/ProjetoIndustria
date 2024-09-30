@@ -4,5 +4,8 @@
 
 {% block content %}
 
-<p>cont é {{cont}}</p>
+    {% for i in maquinas %}
+        <p>{{i.nome}}</p>
+    {% endfor %}
+    
 {% endblock %}
