@@ -1,28 +1,21 @@
 from app import create_app
 from time import sleep
+from flask import render_template
 import threading
-import logging
 
-# Configurar o logging para exibir no console (STDOUT)
-logging.basicConfig(level=logging.INFO)
-
-# chama a função do app que cria tudo
 app = create_app()
+cont = 0
 
 def tarefa():
-    cont = 0
-    while True:
-        logging.info("it should be good")
-        logging.info(f"Cont: {cont}")  # Usando logging ao invés de print
-        cont += 1
-        sleep(5)
-
+    sleep(5)
+    cont =cont+1
+    return render_template("teste.html", cont=cont)
 def startThread():
     thread = threading.Thread(target=tarefa)
     thread.daemon = True
     thread.start()
 
-# inicia o app
+# chama a função do app que cria tudo
 if __name__ == "__main__":
     startThread()
     app.run()
