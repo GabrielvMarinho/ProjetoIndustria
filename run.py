@@ -5,7 +5,6 @@ from models import Maquina
 
 app = create_app()
 
-
 def tarefa():
     while True:
         with app.app_context():
@@ -15,10 +14,7 @@ def tarefa():
                 
         sleep(5)
 
-def startThread():
-    thread = threading.Thread(target=tarefa)
-    thread.start()  
-    
 if __name__ == "__main__":
-    startThread()
+    thread = threading.Thread(target=tarefa)
+    thread.start()
     app.run()
