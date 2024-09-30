@@ -1,7 +1,10 @@
 from app import create_app, db
 import threading
 from random import randint
+from flask_socketio import SocketIO
+
 app = create_app()
+socketio = SocketIO(app)
 
 from time import sleep
 from models import Maquina
@@ -14,11 +17,14 @@ def tarefa():
                 for chave in maquina.dadosDict:
                     maquina.dadosDict[chave] = randint(1, 100)
             db.session.commit()
-        sleep(5)
+
+        socketio.emit('atualizar_dados')
+        sleep(10)
 
 
 
 if __name__ == "__main__":
     thread = threading.Thread(target=tarefa)
     thread.start()
-    app.run(debug=True, use_reloader=False) #tirar no deploy
+    socketio.run(app, debug=True)
+

@@ -8,6 +8,7 @@ db = SQLAlchemy()
 #cria uma função para iniciar o app quando importar
 def create_app():
     app = Flask(__name__, template_folder="templates", static_folder="static", static_url_path="/")
+    
     #comando para criar a database e escolher o lugar do diretório
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./testdb.db"
     db.init_app(app)

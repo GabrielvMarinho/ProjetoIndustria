@@ -4,19 +4,13 @@ from forms import SignUpForm, dadosMaquina, cadastroMaquina
 from flask_login import current_user, logout_user, login_user, login_required
 def register_routes(app, db):
 
-    #TESTE TESTE TESTE
-    @app.route("/teste")
-    def teste():
-        maquinas = Maquina.query.all()
-        return render_template("teste.html", maquinas = maquinas)
-   
 
+    #routes relacionado aos atributos -----------------------------------------------------
     @app.route("/lista_maquinas_atributos")
     @login_required
     def lista_maquinas_atributos():
         maquinas = Maquina.query.all()
         return render_template("lista_maquinas_atributos.html", maquinas=maquinas)
-    
     @app.route("/adicionando_atributos/<id>", methods=["GET", "POST"])
     @login_required
     def add_atributo(id):
@@ -27,6 +21,19 @@ def register_routes(app, db):
             db.session.commit()
             return redirect(url_for("pagina_principal"))
         return render_template('adicionar_dados.html', form=form)  
+    #------------------------------------------------------------------------
+
+    @app.route("/retornar_dados")
+    def retornar_dados():
+        dado = Maquina.query.get(1).dadosDict
+        return jsonify(dado)
+
+    @app.route("/painel_controle")
+    def painel_controle():
+        return render_template("painel_controle.html")
+
+
+
 
     
     #mostra a lista de máquinas para adicionar a relação
@@ -34,7 +41,6 @@ def register_routes(app, db):
     def add_relacao():
         maquinas = Maquina.query.all()
         return render_template("adicionar_relacao.html", maquinas = maquinas)
-    
     #adiciona a relação de fato
     @app.route("/add_rel<id>", methods=["GET", "POST"])
     def add_rel(id):
@@ -44,6 +50,7 @@ def register_routes(app, db):
         maquinas = Maquina.query.all()
         return render_template("adicionar_relacao.html", maquinas =maquinas)
 
+    #adicionar maquinas no servidor
     @app.route("/adicionar_maquinas", methods=["GET", "POST"])
     @login_required
     def adicionar_maquinas():

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} Add Relação {% endblock %}
+
+{% block content %}
+
+    <p>aqui um dados específico</p>
+    <h1 id="dado"></h1>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+<script>
+    const socket = io();
+
+    socket.on('atualizar_dados', function() {
+        buscarDados();
+    });
+
+    async function buscarDados() {
+        const resp = await fetch("/retornar_dados"); // mudar no deploy
+        const dados = await resp.json();
+        const h1 = document.getElementById("dado");
+        console.log(dados);
+        
+        h1.innerText = "";
+        Object.keys(dados).forEach(i => {
+            console.log(i);
+            h1.innerText += i + " - " + dados[i] + "\n";
+        });
+    }
+
+</script>
+
+{% endblock %}
