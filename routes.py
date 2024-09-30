@@ -41,8 +41,13 @@ def register_routes(app, db):
     @app.route("/retornar_dados")
     @login_required
     def retornar_dados():
-        dado = Maquina.query.get(1).dadosDict
-        return jsonify(dado)
+        
+        dados =[]
+        maquinas = current_user.maquinas
+        for i in maquinas:
+            dados.append(i.dadosDict)
+        print(dados)
+        return jsonify(dados)
 
     
 
