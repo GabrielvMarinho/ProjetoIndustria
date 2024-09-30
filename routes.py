@@ -11,16 +11,21 @@ def register_routes(app, db):
         return render_template("teste.html", maquinas = maquinas)
    
 
-    @app.route("/adicionando_atributos", methods=["GET", "POST"])
+    @app.route("/lista_maquinas_atributos")
     @login_required
-    def add_atributo():
+    def lista_maquinas_atributos():
+        maquinas = Maquina.query.all()
+        return render_template("lista_maquinas_atributos.html", maquinas=maquinas)
+    
+    @app.route("/adicionando_atributos/<id>", methods=["GET", "POST"])
+    @login_required
+    def add_atributo(id):
         form = dadosMaquina()
-        maquina = Maquina.query.get(2)
-
+        maquina = Maquina.query.get(id)
         if form.validate_on_submit():
             maquina.dadosDict[form.nomedado.data] = 100
-
             db.session.commit()
+            return redirect(url_for("pagina_principal"))
         return render_template('adicionar_dados.html', form=form)  
 
     

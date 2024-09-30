@@ -1,20 +1,24 @@
 from app import create_app, db
-from time import sleep
 import threading
-from models import Maquina
-
+from random import randint
 app = create_app()
+
+from time import sleep
+from models import Maquina
 
 def tarefa():
     while True:
         with app.app_context():
-            maquina = Maquina(nome="hell yeah")
-            db.session.add(maquina)
+            maquinas = Maquina.query.all()
+            for maquina in maquinas:
+                for chave in maquina.dadosDict:
+                    maquina.dadosDict[chave] = randint(1, 100)
             db.session.commit()
-                
         sleep(5)
+
+
 
 if __name__ == "__main__":
     thread = threading.Thread(target=tarefa)
     thread.start()
-    app.run()
+    app.run(debug=True, use_reloader=False) #tirar no deploy

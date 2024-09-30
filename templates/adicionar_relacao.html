@@ -5,9 +5,7 @@
 {% block content %}
 
 {% for i in maquinas %}
-    <p>{{i.nome}}<button onclick = "add_relacao({{i.id}})">add relação</button>1</p>
-    
-
+    <p>{{i.nome}}<button onclick = "add_relacao({{i.id}})">add relação</button></p>
 {% endfor %}
     <script>
         function add_relacao(id){

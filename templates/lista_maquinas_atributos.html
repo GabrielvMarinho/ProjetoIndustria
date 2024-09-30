@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %} Add Relação {% endblock %}
+
+{% block content %}
+
+{% for i in maquinas %}
+    <p>{{i.nome}}add atributo<a href="{{url_for('add_atributo', id = i.id)}}">add atributo</a></p>
+{% endfor %}
+    
+{% endblock %}
