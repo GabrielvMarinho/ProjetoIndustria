@@ -8,13 +8,17 @@ cont = 0
 
 def tarefa():
     sleep(5)
-    cont =cont+1
-    return render_template("teste.html", cont=cont)
+    global cont
+    while True:
+        cont = cont+1
 def startThread():
     thread = threading.Thread(target=tarefa)
     thread.daemon = True
     thread.start()
-
+    
+@app.route('/teste')
+def index():
+    return render_template("teste.html", cont=cont)
 # chama a função do app que cria tudo
 if __name__ == "__main__":
     startThread()
