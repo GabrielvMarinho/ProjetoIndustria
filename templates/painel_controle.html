@@ -9,8 +9,12 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
 <script>
-    const socket = io();
 
+    function criarGrafico(){
+        console.log({{maquinas}})
+    }
+    criarGrafico()
+    const socket = io();
 
     socket.on('atualizar_dados', function() {
         buscarDados()
@@ -18,20 +22,16 @@
     
     async function buscarDados() {
         const resp = await fetch("/retornar_dados"); // mudar no deploy
-        const dados = await resp.json();
-        console.log(dados);
+        var dados = await resp.json();
+        console.log(dados)
         
-        Object.keys(dados).forEach(i => {
-            const h1 = document.createElement("h1")
-            h1.innerText = "";
-
-            h1.innerText += i + " - \n";
-            console.log(i);
-
-            document.body.appendChild(h1)
-            const h2 = document.createElement("h2")
-
+        //checar se é uma string
+        dados.forEach(i => {
+            if(typeof i === "string"){
+                dados = dados.filter(item => item !== i);
+            }
         });
+        console.log(dados)
     }
 
 </script>

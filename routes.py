@@ -14,7 +14,8 @@ def register_routes(app, db):
     @app.route("/painel_controle")
     @login_required
     def painel_controle():
-        return render_template("painel_controle.html")
+        maquinas = current_user.maquinas
+        return render_template("painel_controle.html", maquinas = maquinas)
 
 
     @app.route("/retornar_user")
@@ -41,10 +42,10 @@ def register_routes(app, db):
     @app.route("/retornar_dados")
     @login_required
     def retornar_dados():
-        
         dados =[]
         maquinas = current_user.maquinas
         for i in maquinas:
+            dados.append(i.nome)
             dados.append(i.dadosDict)
         print(dados)
         return jsonify(dados)
