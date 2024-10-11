@@ -22,7 +22,9 @@
     console.log("entrou")
 
 
-
+    socket.on("notificacoes", (obj)=>{
+        console.log(obj["mensagem"])
+    })
 
 
     socket.on('atualizar_dados', (data)=> {

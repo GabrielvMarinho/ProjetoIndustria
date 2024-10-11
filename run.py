@@ -5,6 +5,7 @@ from flask_socketio import SocketIO
 from time import sleep
 from models import Maquina, Notificacao, Operador
 from flask_login import current_user
+from flask import jsonify
 
 app, socketio = create_app()
 
@@ -29,15 +30,21 @@ def tarefa():
                                     idMaquina = maquina.id,
                                     idOperador = operador.id
                                 )
-                            
-
+                                notificacaoDict = {
+                                    "mensagem": notificacao.mensagem,
+                                    "tipoMensagem": notificacao.tipoMensagem,
+                                    "idMaquina": notificacao.idMaquina,
+                                    "idOperador": notificacao.idOperador    
+                                }
+                                socketio.emit('notificacoes',notificacaoDict, room=operador.id)
+                                print("msg")
 
                                 db.session.add(notificacao)
 
                     maquina.dadosDict[chave] = dado
             db.session.commit()
         socketio.emit('atualizar_dados')
-        sleep(5)
+        sleep(1)
 
 
 

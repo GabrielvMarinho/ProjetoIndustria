@@ -34,5 +34,7 @@ class Notificacao(db.Model):
     idOperador = db.Column(db.Integer, db.ForeignKey("operador.id"), nullable=False)
 
     
+
+    
     
 
