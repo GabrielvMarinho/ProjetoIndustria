@@ -13,7 +13,33 @@
         {{form.nomedado.label}} <br>
         {{form.nomedado()}}
     </p> 
-    <!-- BIANCA precisa adicionar valor máximo e valor mínimo, tambpem precisa adicionar a msg para cada -->
+    
+    <p>
+        {{form. minMaquina.label}} <br>
+        {{form. minMaquina()}}
+    </p> 
+
+    <p>
+        {{form. msgErroMin.label}} <br>
+        {{form. msgErroMin()}}
+    </p>
+
+    <p>
+        {{form. maxMaquina.label}} <br>
+        {{form. maxMaquina()}}
+    </p>
+
+    <p>
+        {{form. msgErroMax.label}} <br>
+        {{form. msgErroMax()}}
+    </p>
+
+   
+    <div>
+        {{ form.option.label }}<br>  <!-- Exibe o label do RadioField -->
+        {{ form.option() }}<br>  <!-- Exibe os radio buttons -->
+    </div>
+    
     <p> {{form.submit()}} </p>
 </form>
 

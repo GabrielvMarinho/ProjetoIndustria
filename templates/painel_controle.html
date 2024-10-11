@@ -9,17 +9,25 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
 <script>
+    const operadorId = 1
 
-    function criarGrafico(){
-        
-    }
-    criarGrafico()
     const socket = io();
-    
-    socket.on('atualizar_dados', function() {
+
+    const userId = 1; // ID do usuário
+
+    socket.emit('join_room', {userId});
+
+    socket.on('atualizar_dadosx', (data)=> {
+        console.log("aquie ó"+data)
+    });
+    socket.on('atualizar_dados', (data)=> {
         buscarDados()
     });
     
+    // O BUSCAR DADOS DEVE BUSCAR TODOS OS DADOS MAS DEVE FAZER 
+    // UM FETCH QUE RETORNA AS NOTIFICAÇÕES TAMBÉM (ESSE FETCH DEVE
+    // DELETAR AS NOTIFICAÇÕES QUE ELE MANDAR E PASSAR PARA O HISTORICO)
+
     async function buscarDados() {
         const resp = await fetch("/retornar_dados"); // mudar no deploy
         var dados = await resp.json();

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificação deslizante</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        /* Barra de notificação */
+        #notification-bar {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 300px;
+            height: 50px;
+            background-color: #333;
+            color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: height 0.3s ease;
+        }
+
+        /* Conteúdo da barra de notificação */
+        #notification-content {
+            padding: 10px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Botão de expandir/recolher */
+        #toggle-btn {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 18px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        #toggle-btn:hover {
+            background-color: #555;
+        }
+
+        /* Estilo para quando a barra está fechada */
+        #notification-bar.closed {
+            height: 30px;
+        }
+
+        #notification-bar.closed #notification-content {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de notificação -->
+    <div id="notification-bar" class="closed">
+        <div id="notification-content">
+            <p>Esta é a sua notificação!</p>
+        </div>
+        <button id="toggle-btn">+</button>
+    </div>
+
+    <script>
+        // Obtém o botão e a barra de notificação
+        const toggleBtn = document.getElementById('toggle-btn');
+        const notificationBar = document.getElementById('notification-bar');
+
+        // Adiciona evento de clique no botão
+        toggleBtn.addEventListener('click', () => {
+            // Verifica se a barra está aberta ou fechada
+            if (notificationBar.classList.contains('closed')) {
+                notificationBar.classList.remove('closed');
+                toggleBtn.textContent = '-';  // Muda o ícone para "fechar"
+            } else {
+                notificationBar.classList.add('closed');
+                toggleBtn.textContent = '+';  // Muda o ícone para "abrir"
+            }
+        });
+    </script>
+</body>
+</html>

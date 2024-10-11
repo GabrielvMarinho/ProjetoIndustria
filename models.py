@@ -21,5 +21,18 @@ class Maquina(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.Text, nullable = False)
     dadosDict = db.Column(MutableDict.as_mutable(JSON))
+    max = db.Column(MutableDict.as_mutable(JSON))
+    min = db.Column(MutableDict.as_mutable(JSON))
+
+
+class Notificacao(db.Model):
+    __tablename__ = 'notificacao'
+    id = db.Column(db.Integer, primary_key=True)
+    mensagem = db.Column(db.Text, nullable=False)
+    tipoMensagem = db.Column(db.Text, nullable=False)
+    idMaquina = db.Column(db.Integer, db.ForeignKey("maquina.id"), nullable=False)
+    idOperador = db.Column(db.Integer, db.ForeignKey("operador.id"), nullable=False)
+
+    
     
 

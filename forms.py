@@ -1,5 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, IntegerField
+from wtforms import RadioField, SubmitField
+from wtforms.validators import DataRequired
 
 class SignUpForm(FlaskForm):
     username = StringField('Username')
@@ -12,11 +14,11 @@ class cadastroMaquina(FlaskForm):
 
 class dadosMaquina(FlaskForm):# BIANCA precisa adicionar valor máximo e valor mínimo, tambpem precisa adicionar a msg para cada
     nomedado = StringField("dado")
-    submit = SubmitField('criar')
-    valorMaximo = IntegerField ("max")
-
-    # minMaquina = IntegerField('Min')
-    # msgErro = StringField('Mensagem de erro')
-    # maxMaquina = IntegerField('Max')
-    # msgErroMax = StringField ('Mensagem de erro')
-    # submit = SubmitField('criar')
+    minMaquina = IntegerField('Min')
+    msgErroMin = StringField('Mensagem de erro')
+    maxMaquina = IntegerField('Max')
+    msgErroMax = StringField ('Mensagem de erro')
+    option = RadioField('Grau de Importância:', 
+                        choices=[('1', 'pequeno'), ('2', 'Médio'), ('3', 'Grande')],
+                        validators=[DataRequired()])
+    submit = SubmitField('Submit')

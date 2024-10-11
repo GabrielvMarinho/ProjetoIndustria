@@ -5,11 +5,16 @@ from flask_login import current_user, logout_user, login_user, login_required
 
 
 
-def register_routes(app, db):
+
+def register_routes(app, db, socketio):
 
 
     
-    
+    @socketio.on('join_room')
+    def handle_join_room(id):
+        user_id = id
+        print("id do mano"+user_id)
+        join_room(f'room_{user_id}')  # Adiciona o usuário à sala com base no ID
 
     @app.route("/painel_controle")
     @login_required
@@ -33,9 +38,15 @@ def register_routes(app, db):
         form = dadosMaquina()
         maquina = Maquina.query.get(id)
         if form.validate_on_submit():
-            maquina.dadosDict[form.nomedado.data] = 100
-            db.session.commit()
-            return redirect(url_for("pagina_principal"))
+            
+            if any(i == form.nomedado.data for i in maquina.dadosDict):
+                return "Já existe não é possivel adicionar"
+            else:
+                maquina.dadosDict[form.nomedado.data] = 100
+                db.session.commit()
+                selected_option = form.option.data
+                return redirect(url_for("pagina_principal"))
+                
         return render_template('adicionar_atributo.html', form=form)  
     #------------------------------------------------------------------------
 
@@ -47,7 +58,6 @@ def register_routes(app, db):
         for i in maquinas:
             dados.append(i.nome)
             dados.append(i.dadosDict)
-        print(dados)
         return jsonify(dados)
 
     
