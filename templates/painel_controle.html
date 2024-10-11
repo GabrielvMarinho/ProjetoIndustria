@@ -9,17 +9,22 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
 <script>
-    const operadorId = 1
 
-    const socket = io();
 
-    const userId = 1; // ID do usuário
+    // var socket = io.connect('http://' + document.domain + ':' + location.port);
+    const socket = io({autoConnect: false});
+    console.log("entrou")
+    socket.connect();
+    var id = {{current_user.id}}
+    socket.emit("user_join", id);
 
-    socket.emit('join_room', {userId});
+    
+    console.log("entrou")
 
-    socket.on('atualizar_dadosx', (data)=> {
-        console.log("aquie ó"+data)
-    });
+
+
+
+
     socket.on('atualizar_dados', (data)=> {
         buscarDados()
     });
@@ -31,7 +36,6 @@
     async function buscarDados() {
         const resp = await fetch("/retornar_dados"); // mudar no deploy
         var dados = await resp.json();
-        console.log(dados)
         
         //checar se é uma string
         dados.forEach(i => {
@@ -39,7 +43,6 @@
                 dados = dados.filter(item => item !== i);
             }
         });
-        console.log(dados)
     }
 
 </script>

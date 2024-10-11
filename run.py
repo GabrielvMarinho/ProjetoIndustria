@@ -5,8 +5,10 @@ from flask_socketio import SocketIO
 from time import sleep
 from models import Maquina, Notificacao, Operador
 from flask_login import current_user
-app = create_app()
-socketio = SocketIO(app)
+
+app, socketio = create_app()
+
+
 
 def tarefa():
     while True:
@@ -27,10 +29,7 @@ def tarefa():
                                     idMaquina = maquina.id,
                                     idOperador = operador.id
                                 )
-                                
-                                id = operador.id
-                                print("id do room"+str(id))
-                                socketio.emit('atualizar_dadosx', "qwasdasdasdasdasd", room=f'room_{id}')
+                            
 
 
                                 db.session.add(notificacao)
@@ -38,7 +37,8 @@ def tarefa():
                     maquina.dadosDict[chave] = dado
             db.session.commit()
         socketio.emit('atualizar_dados')
-        sleep(1)
+        sleep(5)
+
 
 
 

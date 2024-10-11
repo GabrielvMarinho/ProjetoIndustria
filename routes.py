@@ -2,19 +2,24 @@ from flask import render_template, request, redirect, url_for, jsonify
 from models import Operador, Maquina
 from forms import SignUpForm, dadosMaquina, cadastroMaquina
 from flask_login import current_user, logout_user, login_user, login_required
+from flask_socketio import join_room
 
 
 
 
 def register_routes(app, db, socketio):
 
+    @socketio.on("user_join")
+    def conectar_operador(id):
+        join_room(id)
+        print("Operador conectado á sala "+str(id))
 
+    # @socketio.on("user_join")
+    # def handle_user_join(username):
+    #     print(f"User {username} joined!")
+    #     users[username] = request.sid
     
-    @socketio.on('join_room')
-    def handle_join_room(id):
-        user_id = id
-        print("id do mano"+user_id)
-        join_room(f'room_{user_id}')  # Adiciona o usuário à sala com base no ID
+
 
     @app.route("/painel_controle")
     @login_required

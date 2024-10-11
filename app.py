@@ -6,6 +6,7 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, join_room
 
 #criando o db
+
 db = SQLAlchemy()
 #cria uma função para iniciar o app quando importar
 def create_app():
@@ -30,7 +31,7 @@ def create_app():
     register_routes(app, db, socketio)
     migrate = Migrate(app, db)
     #retorna o app pronto para ser inicializado
-    return app
+    return app, socketio
 
 
 
