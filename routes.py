@@ -14,12 +14,7 @@ def register_routes(app, db, socketio):
         join_room(id)
         print("Operador conectado á sala "+str(id))
 
-    # @socketio.on("user_join")
-    # def handle_user_join(username):
-    #     print(f"User {username} joined!")
-    #     users[username] = request.sid
     
-
 
     @app.route("/painel_controle")
     @login_required
@@ -37,6 +32,8 @@ def register_routes(app, db, socketio):
     def lista_maquinas_atributos():
         maquinas = Maquina.query.all()
         return render_template("lista_maquinas_atributos.html", maquinas=maquinas)
+
+    #adicionar atributo
     @app.route("/adicionando_atributos/<id>", methods=["GET", "POST"])
     @login_required
     def add_atributo(id):
@@ -48,8 +45,9 @@ def register_routes(app, db, socketio):
                 return "Já existe não é possivel adicionar"
             else:
                 maquina.dadosDict[form.nomedado.data] = 100
+                # maquina.min[form.minMaquina.data] = form.msgErroMin.data
+                # maquina.min[form.maxMaquina.data] = form.msgErroMax.data
                 db.session.commit()
-                selected_option = form.option.data
                 return redirect(url_for("pagina_principal"))
                 
         return render_template('adicionar_atributo.html', form=form)  
@@ -96,6 +94,7 @@ def register_routes(app, db, socketio):
             maquina = Maquina(
                 nome = form.nome.data,
                 dadosDict = {}
+                
             )
             db.session.add(maquina)
             db.session.commit()

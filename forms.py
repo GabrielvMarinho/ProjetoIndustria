@@ -12,13 +12,16 @@ class cadastroMaquina(FlaskForm):
     nome = StringField('nome da maquina')
     submit = SubmitField('criar')
 
-class dadosMaquina(FlaskForm):# BIANCA precisa adicionar valor máximo e valor mínimo, tambpem precisa adicionar a msg para cada
+class dadosMaquina(FlaskForm):
     nomedado = StringField("dado")
     minMaquina = IntegerField('Min')
     msgErroMin = StringField('Mensagem de erro')
+    optionMin = RadioField('Grau de Importância:', 
+                        choices=[('1', 'pequeno'), ('2', 'Médio'), ('3', 'Grande')],
+                        validators=[DataRequired()])
     maxMaquina = IntegerField('Max')
     msgErroMax = StringField ('Mensagem de erro')
-    option = RadioField('Grau de Importância:', 
+    optionMax = RadioField('Grau de Importância:', 
                         choices=[('1', 'pequeno'), ('2', 'Médio'), ('3', 'Grande')],
                         validators=[DataRequired()])
     submit = SubmitField('Submit')

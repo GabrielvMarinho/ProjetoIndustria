@@ -21,8 +21,8 @@ class Maquina(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.Text, nullable = False)
     dadosDict = db.Column(MutableDict.as_mutable(JSON))
-    max = db.Column(MutableDict.as_mutable(JSON))
-    min = db.Column(MutableDict.as_mutable(JSON))
+    # maxDict = db.Column(MutableDict.as_mutable(JSON))
+    # minDict = db.Column(MutableDict.as_mutable(JSON))
 
 
 class Notificacao(db.Model):

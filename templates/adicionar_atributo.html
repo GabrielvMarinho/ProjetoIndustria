@@ -23,7 +23,10 @@
         {{form. msgErroMin.label}} <br>
         {{form. msgErroMin()}}
     </p>
-
+    <div>
+        {{ form.optionMin.label }}<br> 
+        {{ form.optionMin() }}<br> 
+    </div>
     <p>
         {{form. maxMaquina.label}} <br>
         {{form. maxMaquina()}}
@@ -36,8 +39,8 @@
 
    
     <div>
-        {{ form.option.label }}<br>  <!-- Exibe o label do RadioField -->
-        {{ form.option() }}<br>  <!-- Exibe os radio buttons -->
+        {{ form.optionMax.label }}<br> 
+        {{ form.optionMax() }}<br> 
     </div>
     
     <p> {{form.submit()}} </p>

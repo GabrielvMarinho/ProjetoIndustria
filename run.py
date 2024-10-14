@@ -7,8 +7,8 @@ from models import Maquina, Notificacao, Operador
 from flask_login import current_user
 from flask import jsonify
 
-app, socketio = create_app()
 
+app, socketio = create_app()
 
 
 def tarefa():
@@ -16,9 +16,10 @@ def tarefa():
         with app.app_context():
             maquinas = Maquina.query.all()
             for maquina in maquinas:
+                
                 for chave in maquina.dadosDict:
                     dado = randint(1, 100)
-                    if dado>95:
+                    if dado>50:
                         #criar uma notificação para cada operador
                         operadores = Operador.query.all()
                         for operador in operadores:
@@ -44,7 +45,7 @@ def tarefa():
                     maquina.dadosDict[chave] = dado
             db.session.commit()
         socketio.emit('atualizar_dados')
-        sleep(1)
+        sleep(5)
 
 
 
