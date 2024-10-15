@@ -45,8 +45,8 @@ def register_routes(app, db, socketio):
                 return "Já existe não é possivel adicionar"
             else:
                 maquina.dadosDict[form.nomedado.data] = 100
-                # maquina.min[form.minMaquina.data] = form.msgErroMin.data
-                # maquina.min[form.maxMaquina.data] = form.msgErroMax.data
+                maquina.maxDict[form.msgErroMin.data] = form.minMaquina.data
+                maquina.minDict[form.msgErroMax.data] = form.maxMaquina.data
                 db.session.commit()
                 return redirect(url_for("pagina_principal"))
                 
@@ -93,8 +93,9 @@ def register_routes(app, db, socketio):
         if form.validate_on_submit():
             maquina = Maquina(
                 nome = form.nome.data,
-                dadosDict = {}
-                
+                dadosDict = {},
+                maxDict = {},
+                minDict = {}
             )
             db.session.add(maquina)
             db.session.commit()

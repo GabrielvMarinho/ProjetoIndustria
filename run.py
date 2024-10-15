@@ -16,8 +16,8 @@ def tarefa():
         with app.app_context():
             maquinas = Maquina.query.all()
             for maquina in maquinas:
-                
-                for chave in maquina.dadosDict:
+                for (cDados, vDados), (cMax, vMax), (cMin, vMin) in zip(maquina.dadosDict.items(), maquina.maxDict.items(), maquina.minDict.items()):
+                # for chave in maquina.dadosDict:
                     dado = randint(1, 100)
                     if dado>50:
                         #criar uma notificação para cada operador
@@ -26,7 +26,7 @@ def tarefa():
                             #checando se o operador possui aquela máquina no conjunto de máquinas
                             if any(maquinax.id == maquina.id for maquinax in operador.maquinas):
                                 notificacao = Notificacao(
-                                    mensagem = "máquinas "+maquina.nome+" possui um problema: no "+chave+":"+str(dado),
+                                    mensagem = "máquinas "+maquina.nome+" possui um problema: no "+cDados+":"+str(dado),
                                     tipoMensagem = "PERIGOSO",
                                     idMaquina = maquina.id,
                                     idOperador = operador.id
@@ -42,7 +42,7 @@ def tarefa():
 
                                 db.session.add(notificacao)
 
-                    maquina.dadosDict[chave] = dado
+                    maquina.dadosDict[cDados] = dado
             db.session.commit()
         socketio.emit('atualizar_dados')
         sleep(5)
