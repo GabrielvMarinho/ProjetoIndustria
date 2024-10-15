@@ -47,6 +47,10 @@ def register_routes(app, db, socketio):
                 maquina.dadosDict[form.nomedado.data] = 100
                 maquina.maxDict[form.msgErroMin.data] = form.minMaquina.data
                 maquina.minDict[form.msgErroMax.data] = form.maxMaquina.data
+                maquina.tipoMensagemMax.append(form.optionMax.data)
+                maquina.tipoMensagemMin.append(form.optionMin.data)
+
+                
                 db.session.commit()
                 return redirect(url_for("pagina_principal"))
                 

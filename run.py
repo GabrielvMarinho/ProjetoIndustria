@@ -16,7 +16,7 @@ def tarefa():
         with app.app_context():
             maquinas = Maquina.query.all()
             for maquina in maquinas:
-                for (cDados, vDados), (cMax, vMax), (cMin, vMin) in zip(maquina.dadosDict.items(), maquina.maxDict.items(), maquina.minDict.items()):
+                for (cDados, vDados), (cMax, vMax), (cMin, vMin), tipoMensagemMax, tipoMensagemMin in zip(maquina.dadosDict.items(), maquina.maxDict.items(), maquina.minDict.items(), maquina.tipoMensagemMax, maquina.tipoMensagemMin):
                 # for chave in maquina.dadosDict:
                     dado = randint(1, 100)
                     if dado>50:

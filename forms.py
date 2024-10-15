@@ -17,11 +17,11 @@ class dadosMaquina(FlaskForm):
     minMaquina = IntegerField('Min')
     msgErroMin = StringField('Mensagem de erro')
     optionMin = RadioField('Grau de Importância:', 
-                        choices=[('1', 'pequeno'), ('2', 'Médio'), ('3', 'Grande')],
+                        choices=[('Pequeno', 'Pequeno'), ('Médio', 'Médio'), ('Grande', 'Grande')],
                         validators=[DataRequired()])
     maxMaquina = IntegerField('Max')
     msgErroMax = StringField ('Mensagem de erro')
     optionMax = RadioField('Grau de Importância:', 
-                        choices=[('1', 'pequeno'), ('2', 'Médio'), ('3', 'Grande')],
+                        choices=[('Pequeno', 'Pequeno'), ('Médio', 'Médio'), ('Grande', 'Grande')],
                         validators=[DataRequired()])
     submit = SubmitField('Submit')

@@ -1,5 +1,5 @@
 from app import db
-from sqlalchemy.ext.mutable import MutableDict
+from sqlalchemy.ext.mutable import MutableDict, MutableList
 from sqlalchemy import JSON
 
 from flask_login import UserMixin
@@ -22,7 +22,9 @@ class Maquina(db.Model):
     nome = db.Column(db.Text, nullable = False)
     dadosDict = db.Column(MutableDict.as_mutable(JSON))
     maxDict = db.Column(MutableDict.as_mutable(JSON))
+    tipoMensagemMax = db.Column(MutableList.as_mutable(JSON), default=list)
     minDict = db.Column(MutableDict.as_mutable(JSON))
+    tipoMensagemMin = db.Column(MutableList.as_mutable(JSON), default=list)
 
 
 class Notificacao(db.Model):
