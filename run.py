@@ -16,18 +16,19 @@ def tarefa():
         with app.app_context():
             maquinas = Maquina.query.all()
             for maquina in maquinas:
-                for (cDados, vDados), (cMax, vMax), (cMin, vMin), tipoMensagemMax, tipoMensagemMin in zip(maquina.dadosDict.items(), maquina.maxDict.items(), maquina.minDict.items(), maquina.tipoMensagemMax, maquina.tipoMensagemMin):
+                for (cDados, vDados), (msgMin, dadoMin),(msgMax, dadoMax), tipoMensagemMax, tipoMensagemMin in zip(maquina.dadosDict.items(), maquina.maxDict.items(), maquina.minDict.items(), maquina.tipoMensagemMax, maquina.tipoMensagemMin):
                 # for chave in maquina.dadosDict:
                     dado = randint(1, 100)
-                    if dado>50:
+                    if dado>dadoMax:
                         #criar uma notificação para cada operador
                         operadores = Operador.query.all()
                         for operador in operadores:
                             #checando se o operador possui aquela máquina no conjunto de máquinas
                             if any(maquinax.id == maquina.id for maquinax in operador.maquinas):
+                            
                                 notificacao = Notificacao(
-                                    mensagem = "máquinas "+maquina.nome+" possui um problema: no "+cDados+":"+str(dado),
-                                    tipoMensagem = "PERIGOSO",
+                                    mensagem = "ERRO-> "+maquina.nome+" possui um problema:\nmsg ->"+msgMax+"\ndado:"+cDados+"-"+str(dado),
+                                    tipoMensagem = tipoMensagemMax,
                                     idMaquina = maquina.id,
                                     idOperador = operador.id
                                 )
@@ -38,12 +39,30 @@ def tarefa():
                                     "idOperador": notificacao.idOperador    
                                 }
                                 socketio.emit('notificacoes',notificacaoDict, room=operador.id)
-                                print("msg")
-
                                 db.session.add(notificacao)
-
+                    elif dado<dadoMin:
+                        #criar uma notificação para cada operador
+                        operadores = Operador.query.all()
+                        for operador in operadores:
+                            #checando se o operador possui aquela máquina no conjunto de máquinas
+                            if any(maquinax.id == maquina.id for maquinax in operador.maquinas):
+                            
+                                notificacao = Notificacao(
+                                    mensagem = "ERRO-> "+maquina.nome+" possui um problema:\nmsg ->"+msgMin+"\ndado:"+cDados+"-"+str(dado),
+                                    tipoMensagem = tipoMensagemMin,
+                                    idMaquina = maquina.id,
+                                    idOperador = operador.id
+                                )
+                                notificacaoDict = {
+                                    "mensagem": notificacao.mensagem,
+                                    "tipoMensagem": notificacao.tipoMensagem,
+                                    "idMaquina": notificacao.idMaquina,
+                                    "idOperador": notificacao.idOperador    
+                                }
+                                socketio.emit('notificacoes',notificacaoDict, room=operador.id)
+                                db.session.add(notificacao)
                     maquina.dadosDict[cDados] = dado
-            db.session.commit()
+                db.session.commit()
         socketio.emit('atualizar_dados')
         sleep(5)
 
@@ -54,5 +73,5 @@ def tarefa():
 if __name__ == "__main__":
     thread = threading.Thread(target=tarefa)
     thread.start()
-    socketio.run(app, debug=True)
+    socketio.run(app)
 
