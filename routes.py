@@ -40,16 +40,23 @@ def register_routes(app, db, socketio):
         form = dadosMaquina()
         maquina = Maquina.query.get(id)
         if form.validate_on_submit():
-            
+            print(form.msgErroMax.data)
+            print(maquina.maxDict)
+            for i in maquina.maxDict:
+                print(i)
             if any(i == form.nomedado.data for i in maquina.dadosDict):
-                return "Já existe não é possivel adicionar"
+                return "Já existe este atributo não é possivel adicionar"
+            elif any(i == form.msgErroMax.data for i in maquina.maxDict):
+                return "Já existe esta mensagem de erro máximo"
+            elif any(i == form.msgErroMin.data for i in maquina.minDict):
+                return "Já existe esta mensagem de erro minimo"
             else:
                 maquina.dadosDict[form.nomedado.data] = 100
-                maquina.maxDict[form.msgErroMin.data] = form.minMaquina.data
-                maquina.minDict[form.msgErroMax.data] = form.maxMaquina.data
+                maquina.minDict[form.msgErroMin.data] = form.minMaquina.data
+                maquina.maxDict[form.msgErroMax.data] = form.maxMaquina.data
+
                 maquina.tipoMensagemMax.append(form.optionMax.data)
                 maquina.tipoMensagemMin.append(form.optionMin.data)
-
                 
                 db.session.commit()
                 return redirect(url_for("pagina_principal"))

@@ -1,7 +1,7 @@
 from app import db
 from sqlalchemy.ext.mutable import MutableDict, MutableList
 from sqlalchemy import JSON
-
+from datetime import datetime
 from flask_login import UserMixin
 
 operador_maquina = db.Table("operador_maquina",
@@ -25,17 +25,28 @@ class Maquina(db.Model):
     tipoMensagemMax = db.Column(MutableList.as_mutable(JSON), default=list)
     minDict = db.Column(MutableDict.as_mutable(JSON))
     tipoMensagemMin = db.Column(MutableList.as_mutable(JSON), default=list)
-
-
-class Notificacao(db.Model):
-    __tablename__ = 'notificacao'
-    id = db.Column(db.Integer, primary_key=True)
-    mensagem = db.Column(db.Text, nullable=False)
-    tipoMensagem = db.Column(db.Text, nullable=False)
-    idMaquina = db.Column(db.Integer, db.ForeignKey("maquina.id"), nullable=False)
-    idOperador = db.Column(db.Integer, db.ForeignKey("operador.id"), nullable=False)
-
     
+    def new_memento(self):
+        return MementoNotificacao(idMaquina=self.id, dados=self.dadosDict, data=datetime.now())
+    
+class MementoNotificacao(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    idMaquina = db.Column(db.Integer, nullable=False)
+    dados = db.Column(MutableDict.as_mutable(JSON))
+    data = db.Column(db.DateTime, nullable=False)
+
+class Caretaker:
+
+    @staticmethod
+    def createMemento(maquina):
+        memento = maquina.new_memento()
+        db.session.add(memento)
+        db.session.commit()
+        return memento
+
+    #criar get mementos
+
+
 
     
     

@@ -14,7 +14,7 @@ def create_app():
     socketio = SocketIO(app)
 
     #comando para criar a database e escolher o lugar do diretório
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./testdb.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./database.db"
     db.init_app(app)
     app.secret_key = "chaveSecreta"
     #iniciando o login_manager

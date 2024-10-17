@@ -3,10 +3,7 @@ import threading
 from random import randint
 from flask_socketio import SocketIO
 from time import sleep
-from models import Maquina, Notificacao, Operador
-from flask_login import current_user
-from flask import jsonify
-
+from models import Maquina, Operador, Caretaker
 
 app, socketio = create_app()
 
@@ -14,56 +11,63 @@ app, socketio = create_app()
 def tarefa():
     while True:
         with app.app_context():
+
+            operadores = Operador.query.all()
             maquinas = Maquina.query.all()
+
             for maquina in maquinas:
-                for (cDados, vDados), (msgMin, dadoMin),(msgMax, dadoMax), tipoMensagemMax, tipoMensagemMin in zip(maquina.dadosDict.items(), maquina.maxDict.items(), maquina.minDict.items(), maquina.tipoMensagemMax, maquina.tipoMensagemMin):
-                # for chave in maquina.dadosDict:
+                for (cDados, vDados), (msgMax, dadoMax),(msgMin, dadoMin), tipoMensagemMax, tipoMensagemMin in zip(maquina.dadosDict.items(), maquina.maxDict.items(), maquina.minDict.items(), maquina.tipoMensagemMax, maquina.tipoMensagemMin):
+                    # teste para mandar notificação plo observer:
                     dado = randint(1, 100)
+                    print("dado atual ->", dado)
+                    print("dado max ->", dadoMax)
+                    print("dado min ->", dadoMin)
+
                     if dado>dadoMax:
                         #criar uma notificação para cada operador
                         operadores = Operador.query.all()
                         for operador in operadores:
+
                             #checando se o operador possui aquela máquina no conjunto de máquinas
                             if any(maquinax.id == maquina.id for maquinax in operador.maquinas):
-                            
-                                notificacao = Notificacao(
-                                    mensagem = "ERRO-> "+maquina.nome+" possui um problema:\nmsg ->"+msgMax+"\ndado:"+cDados+"-"+str(dado),
-                                    tipoMensagem = tipoMensagemMax,
-                                    idMaquina = maquina.id,
-                                    idOperador = operador.id
-                                )
+
+                                
                                 notificacaoDict = {
-                                    "mensagem": notificacao.mensagem,
-                                    "tipoMensagem": notificacao.tipoMensagem,
-                                    "idMaquina": notificacao.idMaquina,
-                                    "idOperador": notificacao.idOperador    
+                                    "mensagem": "ERRO-> "+maquina.nome+" possui um problema:\nmsg ->"+msgMax+"\ndado:"+cDados+"-"+str(dado),
+                                    "tipoMensagem": tipoMensagemMax,
+                                    "idMaquina": maquina.id,
+                                    "idOperador": operador.id    
                                 }
+                                
                                 socketio.emit('notificacoes',notificacaoDict, room=operador.id)
-                                db.session.add(notificacao)
+                                Caretaker.createMemento(maquina)
+                    
                     elif dado<dadoMin:
                         #criar uma notificação para cada operador
-                        operadores = Operador.query.all()
                         for operador in operadores:
                             #checando se o operador possui aquela máquina no conjunto de máquinas
                             if any(maquinax.id == maquina.id for maquinax in operador.maquinas):
-                            
-                                notificacao = Notificacao(
-                                    mensagem = "ERRO-> "+maquina.nome+" possui um problema:\nmsg ->"+msgMin+"\ndado:"+cDados+"-"+str(dado),
-                                    tipoMensagem = tipoMensagemMin,
-                                    idMaquina = maquina.id,
-                                    idOperador = operador.id
-                                )
                                 notificacaoDict = {
-                                    "mensagem": notificacao.mensagem,
-                                    "tipoMensagem": notificacao.tipoMensagem,
-                                    "idMaquina": notificacao.idMaquina,
-                                    "idOperador": notificacao.idOperador    
+                                    "mensagem": "ERRO-> "+maquina.nome+" possui um problema:\nmsg ->"+msgMin+"\ndado:"+cDados+"-"+str(dado),
+                                    "tipoMensagem": tipoMensagemMin,
+                                    "idMaquina": maquina.id,
+                                    "idOperador": operador.id    
                                 }
+                                
                                 socketio.emit('notificacoes',notificacaoDict, room=operador.id)
-                                db.session.add(notificacao)
+                                Caretaker.createMemento(maquina)
+                    
                     maquina.dadosDict[cDados] = dado
+
                 db.session.commit()
-        socketio.emit('atualizar_dados')
+            
+            for operador in operadores:
+                dados = {}
+                for maquina in operador.maquinas:
+                    dados[maquina.nome] = maquina.dadosDict
+
+                socketio.emit('atualizar_dados',dados, room=operador.id)
+
         sleep(5)
 
 
