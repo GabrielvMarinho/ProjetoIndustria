@@ -40,6 +40,7 @@ def tarefa():
                                 }
                                 
                                 socketio.emit('notificacoes',notificacaoDict, room=operador.id)
+                                #caretaker chamando seu metodos estatico para criar um memento
                                 Caretaker.createMemento(maquina)
                     
                     elif dado<dadoMin:
@@ -55,6 +56,8 @@ def tarefa():
                                 }
                                 
                                 socketio.emit('notificacoes',notificacaoDict, room=operador.id)
+                                #caretaker chamando seu metodos estatico para criar um memento
+
                                 Caretaker.createMemento(maquina)
                     
                     maquina.dadosDict[cDados] = dado
