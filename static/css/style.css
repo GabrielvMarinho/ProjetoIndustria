@@ -1,5 +1,114 @@
+*{
+    cursor:not-allowed;
+}
 body{
     background-color: rgb(216, 204, 204);
     display: flex;
     flex-direction: column;
+}
+
+.Grande {
+    float: right;
+    padding: 2vw;
+    background-color: rgba(255, 0, 0, 0.7);
+    display: flex;
+    place-items: center;
+    padding-left: 1vw;
+    width: 17vw;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 35px;
+    margin-right: 50px;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.icone {
+    height: 2.5vw;
+    text-align: center;
+
+}
+
+.texto{
+    font-size: 1.5vw;
+    color: white;
+    font-weight: 300;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.separaIconeTexto{
+    padding-left: 2vh;
+}
+
+
+
+
+
+.Médio {
+    float: right;
+    padding: 2vw;
+    background-color: rgba(255, 166, 0, 0.7);
+    display: flex;
+    place-items: center;
+    padding-left: 1vw;
+    width: 17vw;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 35px;
+    margin-right: 50px;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.icone3 {
+    height: 2.5vw;
+    text-align: center;
+
+}
+
+.texto2 {
+    font-size: 1.5vw;
+    color: black;
+    font-weight: 300;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.separaIconeTexto2 {
+    padding-left: 2vh;
+}
+
+
+.Pequeno {
+    float: right;
+    padding: 2vw;
+    background-color: rgba(255, 238, 0, 0.7);
+    display: flex;
+    place-items: center;
+    padding-left: 1vw;
+    width: 17vw;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 35px;
+    margin-right: 50px;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.icone3 {
+    height: 2.5vw;
+    text-align: center;
+
+}
+
+.texto3 {
+    font-size: 1.5vw;
+    color: black;
+    font-weight: 300;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.separaIconeTexto3 {
+    padding-left: 2vh;
 }

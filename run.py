@@ -33,7 +33,7 @@ def tarefa():
 
                                 
                                 notificacaoDict = {
-                                    "mensagem": "ERRO-> "+maquina.nome+" possui um problema:\nmsg ->"+msgMax+"\ndado:"+cDados+"-"+str(dado),
+                                    "mensagem": "ERRO-> "+maquina.nome+"\nmsg ->"+msgMax+"\ndado:"+cDados+"-"+str(dado),
                                     "tipoMensagem": tipoMensagemMax,
                                     "idMaquina": maquina.id,
                                     "idOperador": operador.id    

@@ -6,6 +6,7 @@
 
     <p>aqui um dados específico</p>
     <h1 id="dado">{{maquinas}}</h1>
+    <div id="notificacoes"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
 <script>
@@ -19,9 +20,28 @@
 
     
 
+    const grande = "{{ url_for('static', filename='img/caveira-e-ossos.png') }}";
+    const medio = "{{ url_for('static', filename='img/aviso.png') }}";
+    const pequeno = "{{ url_for('static', filename='img/aviso2.png') }}";
 
     socket.on("notificacoes", (obj)=>{
         console.log(obj["mensagem"])
+        var tipoMensagem=obj["tipoMensagem"]
+        console.log(tipoMensagem)
+
+        const url = tipoMensagem === "Grande"? grande : tipoMensagem === "Médio" ? medio : pequeno
+
+        const notif = document.getElementById("notificacoes")
+        notif.innerHTML += `
+        
+        <div class="${tipoMensagem}">
+            <img class = "icone" src=${url}> 
+            <div class="separaIconeTexto">
+                <h1 class="texto">${obj["mensagem"]}</h1>
+                <h1 class="texto"> tenpertura: 80°C </h1>
+            </div>
+        </div>
+        `
     })
 
 
