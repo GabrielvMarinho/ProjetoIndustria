@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, jsonify
+from flask import render_template, request, redirect, url_for, jsonify, json
 from models import Operador, Maquina
 from forms import SignUpForm, dadosMaquina, cadastroMaquina
 from flask_login import current_user, logout_user, login_user, login_required
@@ -20,8 +20,9 @@ def register_routes(app, db, socketio):
     @login_required
     def painel_controle():
         maquinas = current_user.maquinas
-        return render_template("painel_controle.html", maquinas = maquinas)
-
+        listaMaquinas = [{"id":maquina.id, "nome":maquina.nome, "dados":list(maquina.dadosDict.keys())} for maquina in maquinas]
+        return render_template("painel_controle.html", maquinas = listaMaquinas)
+        
 
     @app.route("/retornar_user")
     def retornar_user():

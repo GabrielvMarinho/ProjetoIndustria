@@ -4,20 +4,27 @@
 
 {% block content %}
 
-<h2> Sign Up</h2>
+<div class="divLogin"> 
+    <h2 class="nomeLogin"> Sign Up</h2>
 <form method="post">
     {{ form.hidden_tag() }}
-    <p>
-        {{form.username.label}} <br>
+    <div class="boxname">
+        {{form.username.label}} 
         {{form.username()}}
-    </p> 
+    </div> 
 
-    <p>
-        {{form.password.label}} <br>
+    <div class="boxname">
+        {{form.password.label}}
         {{form.password()}}
-    </p>
-    <p> {{form.submit()}} </p>
+    </div>
+
+    <div> 
+        {{form.submit(class="botaoForm")}} 
+
+    </div>
 </form>
-<a href="{{url_for('login')}}">fazer Login</a>
+<a href="{{url_for('login')}}" class="boxcadastrologinform">fazer Login</a>
+</div>
+
 
 {% endblock %}

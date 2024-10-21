@@ -4,9 +4,9 @@ from wtforms import RadioField, SubmitField
 from wtforms.validators import DataRequired
 
 class SignUpForm(FlaskForm):
-    username = StringField('Username')
-    password = PasswordField('Password')
-    submit = SubmitField('Sign up')
+    username = StringField('Usuário')
+    password = PasswordField('senha')
+    submit = SubmitField('Logar')
 
 class cadastroMaquina(FlaskForm):
     nome = StringField('nome da maquina')

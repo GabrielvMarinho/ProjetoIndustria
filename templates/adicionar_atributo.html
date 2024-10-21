@@ -4,13 +4,13 @@
 
 {% block content %}
 
-<h2>voce foi logado {{current_user.username}}</h2>
+<h2>Você foi logado como {{current_user.username}}</h2>
 
 <h1>qual dado adicionar</h1>
 <form method="post">
     {{ form.hidden_tag() }}
     <p>
-        {{form.nomedado.label}} <br>
+        {{form.nomedado.label}}
         {{form.nomedado()}}
     </p> 
     

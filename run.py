@@ -19,9 +19,6 @@ def tarefa():
                 for (cDados, vDados), (msgMax, dadoMax),(msgMin, dadoMin), tipoMensagemMax, tipoMensagemMin in zip(maquina.dadosDict.items(), maquina.maxDict.items(), maquina.minDict.items(), maquina.tipoMensagemMax, maquina.tipoMensagemMin):
                     # teste para mandar notificação plo observer:
                     dado = randint(1, 100)
-                    print("dado atual ->", dado)
-                    print("dado max ->", dadoMax)
-                    print("dado min ->", dadoMin)
 
                     if dado>dadoMax:
                         #criar uma notificação para cada operador
@@ -66,8 +63,9 @@ def tarefa():
             
             for operador in operadores:
                 dados = {}
+                
                 for maquina in operador.maquinas:
-                    dados[maquina.nome] = maquina.dadosDict
+                    dados[maquina.id] = list(maquina.dadosDict.values())     
 
                 socketio.emit('atualizar_dados',dados, room=operador.id)
 
@@ -80,5 +78,5 @@ def tarefa():
 if __name__ == "__main__":
     thread = threading.Thread(target=tarefa)
     thread.start()
-    socketio.run(app)
+    socketio.run(app,debug=True)
 

@@ -6,24 +6,68 @@
 
     <p>aqui um dados específico</p>
     <h1 id="dado">{{maquinas}}</h1>
+    <div id="graficos"></div>
     <div id="notificacoes"></div>
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
 
 
+    //criando os gráficos uma única vez
+    var maquinas = {{ maquinas|tojson }};
+
+    maquinas.forEach(m => {
+
+
+        const div = document.getElementById("graficos");
+
+        const divx = document.createElement("div")
+
+        divx.innerHTML =`
+            <div id="divMaquina${m.id}">
+                <h3>${m.nome}</h3>
+                <canvas id="canvas${m.id}"></canvas>
+            </div>
+            `
+        div.appendChild(divx)
+
+        var c = document.getElementById(`canvas${m.id}`)
+
+        var chart1 =new Chart(c, {
+            type: 'polarArea',
+            data: {
+                labels: m.dados,
+                datasets: [{
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                    beginAtZero: true
+                    }
+                }
+            }
+        });
+        console.log(chart1)
+        
+
+    });
+    
+    //trabalhando com a conexão dos quartos
     const socket = io({autoConnect: false});
-    console.log("entrou")
     socket.connect();
     var id = {{current_user.id}}
+    //conectando ao quarto do user específico
     socket.emit("user_join", id);
-
-    
 
     const grande = "{{ url_for('static', filename='img/caveira-e-ossos.png') }}";
     const medio = "{{ url_for('static', filename='img/aviso.png') }}";
     const pequeno = "{{ url_for('static', filename='img/aviso2.png') }}";
 
+    //socket on para receber as notificações
     socket.on("notificacoes", (obj)=>{
         console.log(obj["mensagem"])
         var tipoMensagem=obj["tipoMensagem"]
@@ -44,15 +88,24 @@
         `
     })
 
+    //atualizar os gráficos toda vez que for mandado dado novo graficos
+    socket.on('atualizar_dados', (dados)=> {
+        console.log("chamou")
 
-    socket.on('atualizar_dados', (obj)=> {
-        console.log(obj)
+        Object.entries(dados).forEach(([chave, valor])=>{
+            const c = Chart.getChart(`canvas${chave}`)
+            c.data.datasets[0].data = valor;
+            c.update();
+            
+
+        });
+        
     });
     
-    // O BUSCAR DADOS DEVE BUSCAR TODOS OS DADOS MAS DEVE FAZER 
-    // UM FETCH QUE RETORNA AS NOTIFICAÇÕES TAMBÉM (ESSE FETCH DEVE
-    // DELETAR AS NOTIFICAÇÕES QUE ELE MANDAR E PASSAR PARA O HISTORICO)
 
+    
+    
+    
 
 </script>
 

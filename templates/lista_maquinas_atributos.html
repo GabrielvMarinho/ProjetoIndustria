@@ -5,7 +5,7 @@
 {% block content %}
 
 {% for i in maquinas %}
-    <p>{{i.nome}}add atributo<a href="{{url_for('add_atributo', id = i.id)}}">add atributo</a></p>
+    <p>{{i.nome}}add atributo<a href="{{url_for('add_atributo', id = i.id)}}">Adicionar atributos na máquina</a></p>
 {% endfor %}
     
 {% endblock %}
