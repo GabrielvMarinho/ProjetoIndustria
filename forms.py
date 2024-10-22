@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 class SignUpForm(FlaskForm):
     username = StringField('Usuário')
     password = PasswordField('senha')
-    submit = SubmitField('Logar')
+    submit = SubmitField('Entrar')
 
 class cadastroMaquina(FlaskForm):
     nome = StringField('nome da maquina')
