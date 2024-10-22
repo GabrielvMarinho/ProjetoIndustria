@@ -43,8 +43,13 @@ class Caretaker:
         db.session.add(memento)
         db.session.commit()
         return memento
-
-    #criar get mementos
+    @staticmethod
+    def getAllMementos(id):
+        operador = Operador.query.get(id)
+        notificacoes = MementoNotificacao.query.filter(MementoNotificacao.idMaquina.in_([maquina.id for maquina in operador.maquinas])).all()
+        
+        return notificacoes
+    
 
 
 

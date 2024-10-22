@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, jsonify, json
-from models import Operador, Maquina
+from models import Operador, Maquina, Caretaker
 from forms import SignUpForm, dadosMaquina, cadastroMaquina
 from flask_login import current_user, logout_user, login_user, login_required
 from flask_socketio import join_room
@@ -14,7 +14,10 @@ def register_routes(app, db, socketio):
         join_room(id)
         print("Operador conectado á sala "+str(id))
 
-    
+    @app.route("/historico")
+    def retornar_historico():
+        notificacoes = Caretaker.getAllMementos(current_user.id)
+        return render_template("historico.html", notificacoes=notificacoes)
 
     @app.route("/painel_controle")
     @login_required

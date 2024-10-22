@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %} Add Relação {% endblock %}
+
+{% block content %}
+<h1>historico de notificações</h1>
+{% for i in notificacoes %}
+    <h1>{{i.id}}</h1>
+    <h1>{{i.data}}</h1>
+    <h1>{{i.dados}}</h1>
+
+{% endfor %}
+    
+{% endblock %}

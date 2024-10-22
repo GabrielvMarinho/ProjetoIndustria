@@ -19,6 +19,9 @@ def tarefa():
                 for (cDados, vDados), (msgMax, dadoMax),(msgMin, dadoMin), tipoMensagemMax, tipoMensagemMin in zip(maquina.dadosDict.items(), maquina.maxDict.items(), maquina.minDict.items(), maquina.tipoMensagemMax, maquina.tipoMensagemMin):
                     # teste para mandar notificação plo observer:
                     dado = randint(1, 100)
+                    
+                    #mudando o valor dos dados da máquina em si
+                    maquina.dadosDict[cDados] = dado
 
                     if dado>dadoMax:
                         #criar uma notificação para cada operador
@@ -41,6 +44,7 @@ def tarefa():
                                 Caretaker.createMemento(maquina)
                     
                     elif dado<dadoMin:
+
                         #criar uma notificação para cada operador
                         for operador in operadores:
                             #checando se o operador possui aquela máquina no conjunto de máquinas
@@ -57,7 +61,7 @@ def tarefa():
 
                                 Caretaker.createMemento(maquina)
                     
-                    maquina.dadosDict[cDados] = dado
+                print("nada")
 
                 db.session.commit()
             
@@ -78,5 +82,5 @@ def tarefa():
 if __name__ == "__main__":
     thread = threading.Thread(target=tarefa)
     thread.start()
-    socketio.run(app,debug=True)
+    socketio.run(app)
 
