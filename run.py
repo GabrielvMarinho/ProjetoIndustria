@@ -3,8 +3,8 @@ import threading
 from random import randint
 from flask_socketio import SocketIO
 from time import sleep
-from models import Maquina, Operador, Caretaker
-
+from models import Maquina, Operador
+from singleton import Caretaker
 app, socketio = create_app()
 
 
@@ -41,7 +41,7 @@ def tarefa():
                                 
                                 socketio.emit('notificacoes',notificacaoDict, room=operador.id)
                                 #caretaker chamando seu metodos estatico para criar um memento
-                                Caretaker.createMemento(maquina)
+                                Caretaker.getInstance().createMemento(maquina)
                     
                     elif dado<dadoMin:
 
@@ -59,9 +59,8 @@ def tarefa():
                                 socketio.emit('notificacoes',notificacaoDict, room=operador.id)
                                 #caretaker chamando seu metodos estatico para criar um memento
 
-                                Caretaker.createMemento(maquina)
+                                Caretaker.getInstance().createMemento(maquina)
                     
-                print("nada")
 
                 db.session.commit()
             

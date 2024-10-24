@@ -1,9 +1,9 @@
 from flask import render_template, request, redirect, url_for, jsonify, json
-from models import Operador, Maquina, Caretaker
+from models import Operador, Maquina
 from forms import SignUpForm, dadosMaquina, cadastroMaquina
 from flask_login import current_user, logout_user, login_user, login_required
 from flask_socketio import join_room
-
+from singleton import Caretaker
 
 
 
@@ -16,15 +16,10 @@ def register_routes(app, db, socketio):
 
     @app.route("/historico")
     def retornar_historico():
-        notificacoes = Caretaker.getAllMementos(current_user.id)
+        notificacoes = Caretaker.getInstance().getAllMementos(current_user.id)
         return render_template("historico.html", notificacoes=notificacoes)
 
-    @app.route("/painel_controle")
-    @login_required
-    def painel_controle():
-        maquinas = current_user.maquinas
-        listaMaquinas = [{"id":maquina.id, "nome":maquina.nome, "dados":list(maquina.dadosDict.keys())} for maquina in maquinas]
-        return render_template("painel_controle.html", maquinas = listaMaquinas)
+    
         
 
     @app.route("/retornar_user")
@@ -114,7 +109,7 @@ def register_routes(app, db, socketio):
             )
             db.session.add(maquina)
             db.session.commit()
-            return redirect(url_for("pagina_principal"))
+            return redirect(url_for("painel_controle"))
         return render_template("adicionar_maquinas.html", form=form)
     
     @app.route("/minhas_maquinas")
@@ -123,10 +118,14 @@ def register_routes(app, db, socketio):
         maquinas = current_user.maquinas
         return render_template("minhas_maquinas.html", maquinas=maquinas)
     
-    @app.route("/pagina_principal")
+    
+    
+    @app.route("/painel_controle")
     @login_required
-    def pagina_principal():
-        return render_template("pagina_principal.html")
+    def painel_controle():
+        maquinas = current_user.maquinas
+        listaMaquinas = [{"id":maquina.id, "nome":maquina.nome, "dados":list(maquina.dadosDict.keys())} for maquina in maquinas]
+        return render_template("painel_controle.html", maquinas = listaMaquinas)
     
     #routes relacionado ao login-----------------------------------------------------
     @app.route("/sair")
@@ -158,7 +157,7 @@ def register_routes(app, db, socketio):
             if operador:
                 if operador.password == form.password.data:
                     login_user(operador)
-                    return redirect(url_for("pagina_principal"))
+                    return redirect(url_for("painel_controle"))
                 else:
                     return "errou a senha faca denovo"
             else:

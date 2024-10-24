@@ -35,21 +35,7 @@ class MementoNotificacao(db.Model):
     dados = db.Column(MutableDict.as_mutable(JSON))
     data = db.Column(db.DateTime, nullable=False)
 
-class Caretaker:
 
-    @staticmethod
-    def createMemento(maquina):
-        memento = maquina.new_memento()
-        db.session.add(memento)
-        db.session.commit()
-        return memento
-    @staticmethod
-    def getAllMementos(id):
-        operador = Operador.query.get(id)
-        notificacoes = MementoNotificacao.query.filter(MementoNotificacao.idMaquina.in_([maquina.id for maquina in operador.maquinas])).all()
-        
-        return notificacoes
-    
 
 
 
