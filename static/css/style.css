@@ -1,5 +1,8 @@
 *{
     text-decoration:none;
+    font-family: "Poppins";
+    padding: 0;
+    margin:0;
 }
 
 body {
@@ -17,7 +20,8 @@ body {
 
 body::before {
     content: "";
-    background-image: url("../img/fundo.png");
+    background: rgb(0,34,70);
+background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgb(7, 45, 102) 100%);
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -30,8 +34,10 @@ body::before {
 }
 
 .divLogin{
-    background: rgb(89,110,241);
-    background: linear-gradient(180deg, rgba(89,110,241,1) 27%, rgba(51,63,139,1) 76%);
+    box-shadow: 0 4px 150px rgba(255, 255, 255, 0.1); /* Aumentado o raio de desfoque para 40px */
+
+    background: rgb(0,34,70);
+background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     width: 25vw;
     min-height: fit-content;
     height: 30vw;
@@ -41,6 +47,13 @@ body::before {
     gap:2.5vw;
 
 }
+.modal{
+    display:none;
+}
+.sectionPainelDeControle{
+    display:flex;
+}
+
 .nomeLogin{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 3vw;
@@ -169,4 +182,127 @@ body::before {
 
 .separaIconeTexto3 {
     padding-left: 2vh;
+}
+
+
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1;
+  width: 100%; 
+  height: 100%; 
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+.mensagensErro{
+    font-size:1.5vw;
+    color: #fefefe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.modal.show {
+    display: block; 
+    opacity: 1; 
+    animation: fadeIn 0.2s; /* Fade-in effect */
+
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.modal-content {
+    background-color: rgb(255, 77, 77);
+  margin-inline: auto;
+  width: fit-content;
+  text-wrap: nowrap;
+  padding: 1vw;
+  padding-inline: 2vw;
+  list-style: none;
+  display: flex;
+  flex-direction: row-reverse;
+  gap:0.8vw;
+  margin-top: 2vw;
+  border-radius: 0.5vw;
+
+}
+
+.close {
+    color: #fefefe;
+    float: right;
+    font-size: 20px;
+    font-weight: normal;
+    display: flex;
+    justify-content: end;
+}
+
+.close:hover,
+.close:focus {
+  color: rgb(255, 167, 167);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 100vh;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+    cursor: pointer;
+    background-color:rgb(2, 18, 37); 
+}
+
+.sidebar.open {
+    width: 250px;
+}
+
+.menu {
+    padding-top: 60px;
+    display: none;
+}
+
+.sidebar.open .menu {
+    display: block;
+}
+
+
+.sidebar .toggle-btn {
+    background-color:rgb(2, 18, 37); 
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: end;
+}
+
+.toggle-btn{
+    display: flex;
+    justify-content: end;
+}
+.menu a {
+    display: block;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background-color: #575f79; /* Cor de fundo diferente quando o cursor estiver em cima */
+    color: #E0E0E0; /* Clareia a cor do texto */
+    font-weight: bold; /* Torna o texto negrito ao passar o cursor */
 }

@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, jsonify, json
+from flask import render_template, request, redirect, url_for, jsonify, json, flash
 from models import Operador, Maquina
 from forms import SignUpForm, dadosMaquina, cadastroMaquina
 from flask_login import current_user, logout_user, login_user, login_required
@@ -101,6 +101,10 @@ def register_routes(app, db, socketio):
     def adicionar_maquinas():
         form = cadastroMaquina()
         if form.validate_on_submit():
+            maquina = Maquina.query.filter_by(nome=form.nome.data)
+            if maquina:
+                flash("Máquina com nome JÁ EXISTENTE!")
+                return redirect(url_for("adicionar_maquinas"))
             maquina = Maquina(
                 nome = form.nome.data,
                 dadosDict = {},
@@ -138,6 +142,8 @@ def register_routes(app, db, socketio):
     def signup():
         form = SignUpForm()
         if form.validate_on_submit():
+            operadores = Operador.query.all()
+            
             operador = Operador(
                 username = form.username.data,
                 password = form.password.data,
@@ -159,9 +165,11 @@ def register_routes(app, db, socketio):
                     login_user(operador)
                     return redirect(url_for("painel_controle"))
                 else:
-                    return "errou a senha faca denovo"
+                    flash("Senha INCORRETA!")
+                    return redirect(url_for("login"))
             else:
-                return "n existe esse usuário"
+                flash("Usuário NÃO EXISTE!")
+                return redirect(url_for("login"))
         return render_template('login.html', form=form)
     #------------------------------------------------------------------------
 
