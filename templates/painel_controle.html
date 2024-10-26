@@ -1,13 +1,18 @@
-{% extends "base.html" %}
+{% extends "baseLogado.html" %}
 
-{% block title %} Add Relação {% endblock %}
+{% block title %} Painel de Controle {% endblock %}
 
 {% block content %}
-
-    <p>aqui um dados específico</p>
+<section class="sectionPainelDeControle">
+    <!-- <h2>voce foi logado {{current_user.username}}</h2>
+     -->
+    
     <h1 id="dado">{{maquinas}}</h1>
     <div id="graficos"></div>
     <div id="notificacoes"></div>
+    
+    
+</section>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -78,7 +83,7 @@
         const notif = document.getElementById("notificacoes")
         notif.innerHTML += `
         
-        <div class="${tipoMensagem}">
+        <div class="notificacao ${tipoMensagem}">
             <img class = "icone" src=${url}> 
             <div class="separaIconeTexto">
                 <h1 class="texto">${obj["mensagem"]}</h1>
