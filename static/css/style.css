@@ -50,8 +50,14 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 .modal{
     display:none;
 }
+#graficos{
+    display: flex;
+    flex-direction: row;
+}
 .sectionPainelDeControle{
     display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nomeLogin{
@@ -62,10 +68,12 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 }
 .mensagem{
     font-weight: 400;
-    font-size: 1.5vw;
+    font-size: 1vw;
     color: rgba(255, 255, 255, 0.7);
 }
 .status{
+    font-weight: 400;
+
     font-size: 1vw;
     color: rgba(255, 255, 255, 0.7);
 
@@ -110,30 +118,29 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 }
 .notificacao{
     float: right;
-    padding: 1vw;
     display: flex;
     place-items: center;
-    padding-left: 1vw;
-    width: 13vw;
+    padding: 0.8vw;
+    padding-right: 3vw;
+
+    padding-left: 2vw;
+    width: fit-content;
     z-index: 1000;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 35px;
-    margin-right: 50px;
-    border-radius: 4px;
-    width: fit-content;
+    border-radius: 6px;
 }
 .Grande {
     background-color: rgba(255, 0, 0, 0.7);
 }
 .Médio {
-    background-color: rgba(255, 166, 0, 0.7);
+    background-color: rgba(236, 94, 0, 0.747);
 }
 .Pequeno {
-    background-color: rgba(255, 238, 0, 0.7);
+    background-color: rgba(216, 184, 0, 0.781);
 }
 
 .icone {
-    height: 2.5vw;
+    height: 3vw;
     text-align: center;
 
 }
@@ -143,6 +150,49 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     color: white;
     font-weight: 600;
 }
+#notificacoes h1{
+    font-size: 1.5vw;
+    line-height: 140%;
+
+}
+.tituloNotif{
+    margin-bottom: 1vw;
+    font-size: 2.5vw !important;
+}
+#notificacoes{
+    border-radius: 1vw;
+    padding: 2vw;
+    background-color:rgb(2, 18, 37); 
+    overflow: hidden;
+
+    height: 30vw;
+    gap:1.5vw;
+    width: 25vw;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+/* Para todo o documento */
+::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+    height: 12px; /* Altura da barra de rolagem (para rolagem horizontal) */
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 2vw;
+    background: #ffffff11; /* Cor da parte que se arrasta */
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 2vw;
+    background: #ffffff9c; /* Cor da parte que se arrasta */
+    
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff3a; /* Cor da parte que se arrasta */
+}
+
 
 .separaIconeTexto{
     padding-left: 2vh;

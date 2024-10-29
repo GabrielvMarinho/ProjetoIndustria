@@ -8,7 +8,9 @@
      -->
     
     <div id="graficos"></div>
-    <div id="notificacoes"></div>
+    <div id="notificacoes">
+        <h1 class="tituloNotif">NOTIFICAÇÕES</h1>
+    </div>
     
     
 </section>
@@ -81,7 +83,6 @@
 
         const notif = document.getElementById("notificacoes")
         notif.innerHTML += `
-        
         <div class="notificacao ${tipoMensagem}">
             <img class = "icone" src=${url}> 
             <div class="separaIconeTexto">

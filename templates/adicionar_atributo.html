@@ -4,8 +4,6 @@
 
 {% block content %}
 
-<h2>Você foi logado como {{current_user.username}}</h2>
-
 <h1>qual dado adicionar</h1>
 <form method="post">
     {{ form.hidden_tag() }}
@@ -15,32 +13,32 @@
     </p> 
     
     <p>
-        {{form. minMaquina.label}} <br>
-        {{form. minMaquina()}}
+        {{form.minMaquina.label}} </br>
+        {{form.minMaquina()}}
     </p> 
 
     <p>
-        {{form. msgErroMin.label}} <br>
+        {{form.msgErroMin.label}} </br>
         {{form. msgErroMin()}}
     </p>
     <div>
-        {{ form.optionMin.label }}<br> 
-        {{ form.optionMin() }}<br> 
+        {{ form.optionMin.label }}</br> 
+        {{ form.optionMin() }}</br> 
     </div>
     <p>
-        {{form. maxMaquina.label}} <br>
+        {{form. maxMaquina.label}} </br>
         {{form. maxMaquina()}}
     </p>
 
     <p>
-        {{form. msgErroMax.label}} <br>
+        {{form. msgErroMax.label}} </br>
         {{form. msgErroMax()}}
     </p>
 
    
     <div>
-        {{ form.optionMax.label }}<br> 
-        {{ form.optionMax() }}<br> 
+        {{ form.optionMax.label }}</br> 
+        {{ form.optionMax() }}</br> 
     </div>
     
     <p> {{form.submit()}} </p>

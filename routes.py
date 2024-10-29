@@ -33,22 +33,23 @@ def register_routes(app, db, socketio):
         return render_template("lista_maquinas_atributos.html", maquinas=maquinas)
 
     #adicionar atributo
-    @app.route("/adicionando_atributos/<id>", methods=["GET", "POST"])
+    @app.route("/adicionando_atributos/<id>", methods=["POST", "GET"])
     @login_required
     def add_atributo(id):
         form = dadosMaquina()
         maquina = Maquina.query.get(id)
         if form.validate_on_submit():
-            print(form.msgErroMax.data)
-            print(maquina.maxDict)
-            for i in maquina.maxDict:
-                print(i)
+        
             if any(i == form.nomedado.data for i in maquina.dadosDict):
-                return "Já existe este atributo não é possivel adicionar"
+                flash("Já existe esse ATRIBUTO nesta máquina")
+                return redirect(url_for("add_atributo", id=id))
             elif any(i == form.msgErroMax.data for i in maquina.maxDict):
-                return "Já existe esta mensagem de erro máximo"
+                flash("Já existe esta MENSAGEM DE ERRO MÁXIMO nesta máquina")
+                return redirect(url_for("add_atributo", id=id))
             elif any(i == form.msgErroMin.data for i in maquina.minDict):
-                return "Já existe esta mensagem de erro minimo"
+                flash("Já existe esta MENSAGEM DE ERRO MÍNIMO nesta máquina")
+                return redirect(url_for("add_atributo", id=id))
+
             else:
                 maquina.dadosDict[form.nomedado.data] = 100
                 maquina.minDict[form.msgErroMin.data] = form.minMaquina.data
