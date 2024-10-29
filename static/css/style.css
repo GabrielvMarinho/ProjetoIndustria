@@ -21,7 +21,7 @@ body {
 body::before {
     content: "";
     background: rgb(0,34,70);
-background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgb(7, 45, 102) 100%);
+    background: linear-gradient(to bottom, #b2d0f1, #6b77d6);
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -54,10 +54,12 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     display: flex;
     flex-direction: row;
     justify-content: center;
-    flex-grow: 1;
     overflow: hidden;
     overflow-y: scroll;
-    height: 100%;
+    height: 38.5vw;
+    width: 70%;
+    flex-wrap: wrap;
+    align-items: center;
 }
 .logadoComo{
     text-align: left;
@@ -75,7 +77,10 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     gap:4vw;
 }
 .divMaquina{
-    width: 20vw;
+    width: 17vw;
+}
+#graficos div{
+    height: fit-content;
 }
 .conteudoPagina{
     gap:4vw;
@@ -98,8 +103,8 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     color: rgba(255, 255, 255, 0.7);
 }
 .status{
+    text-align: left;
     font-weight: 400;
-
     font-size: 1vw;
     color: rgba(255, 255, 255, 0.7);
 
