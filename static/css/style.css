@@ -55,21 +55,28 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 }
 
 .nomeLogin{
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 3vw;
     margin-top: 3.5vw;
     color: white;
+    font-weight: 400;
 }
+.mensagem{
+    font-weight: 400;
+    font-size: 1.5vw;
+    color: rgba(255, 255, 255, 0.7);
+}
+.status{
+    font-size: 1vw;
+    color: rgba(255, 255, 255, 0.7);
 
+}
 .boxform{
-    font-family: Arial, Helvetica, sans-serif;
     width: 18vw;;
     line-height: 1.7;
 
 }
 
 .labelform{
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 0.9vw;
 }
 
@@ -98,7 +105,6 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 .boxcadastrologinform{
     color: white;
     text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 1vw;
     opacity: 0.9;
 }
@@ -133,14 +139,18 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 }
 
 .texto{
-    font-size: 1.5vw;
+    font-size: 2vw;
     color: white;
-    font-weight: 300;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
 }
 
 .separaIconeTexto{
     padding-left: 2vh;
+   display: flex; 
+   min-width: min-content;
+   flex-direction: column;
+
+    align-items: start;
 }
 
 
@@ -155,12 +165,12 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     font-size: 1.5vw;
     color: black;
     font-weight: 300;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 
 .separaIconeTexto2 {
     padding-left: 2vh;
+    
 }
 
 
@@ -176,7 +186,6 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     font-size: 1.5vw;
     color: black;
     font-weight: 300;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 

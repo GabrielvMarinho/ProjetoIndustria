@@ -7,7 +7,6 @@
     <!-- <h2>voce foi logado {{current_user.username}}</h2>
      -->
     
-    <h1 id="dado">{{maquinas}}</h1>
     <div id="graficos"></div>
     <div id="notificacoes"></div>
     
@@ -87,7 +86,9 @@
             <img class = "icone" src=${url}> 
             <div class="separaIconeTexto">
                 <h1 class="texto">${obj["mensagem"]}</h1>
-                <h1 class="texto"> tenpertura: 80°C </h1>
+                <h2 class="mensagem">${obj["mensagem1"]}</h2>
+                <h2 class="status">${obj["mensagem2"]}</h2>
+
             </div>
         </div>
         `

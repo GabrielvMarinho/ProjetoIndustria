@@ -58,7 +58,7 @@ def register_routes(app, db, socketio):
                 maquina.tipoMensagemMin.append(form.optionMin.data)
                 
                 db.session.commit()
-                return redirect(url_for("pagina_principal"))
+                return redirect(url_for("painel_controle"))
                 
         return render_template('adicionar_atributo.html', form=form)  
     #------------------------------------------------------------------------
@@ -84,16 +84,25 @@ def register_routes(app, db, socketio):
     @login_required
     def add_relacao():
         maquinas = Maquina.query.all()
-        return render_template("adicionar_relacao.html", maquinas = maquinas)
+        maquinasrel= current_user.maquinas
+        return render_template("mudar_relacao.html", maquinas = maquinas, maquinasrel=maquinasrel)
     #adiciona a relação de fato
     @app.route("/add_rel<id>", methods=["GET", "POST"])
     @login_required
     def add_rel(id):
+        
         maquina = Maquina.query.filter_by(id = id).first()
+        maquinas = Maquina.query.all()
+
+        if maquina in current_user.maquinas:
+            print("entrou")
+            current_user.maquinas.remove(maquina)
+            db.session.commit()
+            return render_template("mudar_relacao.html", maquinas =maquinas)
+
         current_user.maquinas.append(maquina)# cria a relação de maquina e usuário
         db.session.commit()
-        maquinas = Maquina.query.all()
-        return render_template("adicionar_relacao.html", maquinas =maquinas)
+        return render_template("mudar_relacao.html", maquinas =maquinas)
 
     #adicionar maquinas no servidor
     @app.route("/adicionar_maquinas", methods=["GET", "POST"])
@@ -101,7 +110,7 @@ def register_routes(app, db, socketio):
     def adicionar_maquinas():
         form = cadastroMaquina()
         if form.validate_on_submit():
-            maquina = Maquina.query.filter_by(nome=form.nome.data)
+            maquina = Maquina.query.filter_by(nome=form.nome.data).first()
             if maquina:
                 flash("Máquina com nome JÁ EXISTENTE!")
                 return redirect(url_for("adicionar_maquinas"))

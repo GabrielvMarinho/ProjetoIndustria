@@ -33,7 +33,9 @@ def tarefa():
 
                                 
                                 notificacaoDict = {
-                                    "mensagem": "ERRO-> "+maquina.nome+"\nmsg ->"+msgMax+"\ndado:"+cDados+"-"+str(dado),
+                                    "mensagem":maquina.nome,
+                                    "mensagem1":msgMax,
+                                    "mensagem2":"status: "+cDados+"-"+str(dado),
                                     "tipoMensagem": tipoMensagemMax,
                                     "idMaquina": maquina.id,
                                     "idOperador": operador.id    
@@ -50,7 +52,9 @@ def tarefa():
                             #checando se o operador possui aquela máquina no conjunto de máquinas
                             if any(maquinax.id == maquina.id for maquinax in operador.maquinas):
                                 notificacaoDict = {
-                                    "mensagem": "ERRO-> "+maquina.nome+" possui um problema:\nmsg ->"+msgMin+"\ndado:"+cDados+"-"+str(dado),
+                                    "mensagem": maquina.nome,
+                                    "mensagem1":msgMin,
+                                    "mensagem2":"status: "+cDados+"-"+str(dado),
                                     "tipoMensagem": tipoMensagemMin,
                                     "idMaquina": maquina.id,
                                     "idOperador": operador.id    
