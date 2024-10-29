@@ -16,12 +16,12 @@ body {
     color: white;
     text-align: center;
     flex-direction: column;
+    background: linear-gradient(to bottom, #b2d0f1, #6b77d6);
+
 }
 
 body::before {
     content: "";
-    background: rgb(0,34,70);
-    background: linear-gradient(to bottom, #b2d0f1, #6b77d6);
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -348,8 +348,9 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     height: 100vh;
     transition: width 0.3s ease;
     overflow-x: hidden;
+    background-color: #5867C2;
+
     cursor: pointer;
-    background-color:rgb(2, 18, 37); 
 }
 
 .sidebar.open {
@@ -367,7 +368,8 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 
 
 .sidebar .toggle-btn {
-    background-color:rgb(2, 18, 37); 
+    background-color: #5867C2;
+
     color: white;
     border: none;
     font-size: 18px;
