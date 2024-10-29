@@ -6,11 +6,12 @@
 <section class="sectionPainelDeControle">
     <!-- <h2>voce foi logado {{current_user.username}}</h2>
      -->
-    
-    <div id="graficos"></div>
-    <div id="notificacoes">
-        <h1 class="tituloNotif">NOTIFICAÇÕES</h1>
-    </div>
+    <section class="conteudoPagina">
+        <div id="graficos"></div>
+        <div id="notificacoes">
+            <h1 class="tituloNotif">NOTIFICAÇÕES</h1>
+        </div>
+    </section>
     
     
 </section>
@@ -32,7 +33,7 @@
         const divx = document.createElement("div")
 
         divx.innerHTML =`
-            <div id="divMaquina${m.id}">
+            <div class="divMaquina" id="divMaquina${m.id}">
                 <h3>${m.nome}</h3>
                 <canvas id="canvas${m.id}"></canvas>
             </div>

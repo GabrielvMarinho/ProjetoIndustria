@@ -53,13 +53,39 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 #graficos{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 100%;
+}
+.logadoComo{
+    text-align: left;
+    margin-left: 8%;
+    font-size: 2vw;
 }
 .sectionPainelDeControle{
     display:flex;
+    flex-direction: column;
     justify-content: center;
+    height: 100vh;
+    width: 100%;
+    margin: 2vw;
+
+    gap:4vw;
+}
+.divMaquina{
+    width: 20vw;
+}
+.conteudoPagina{
+    gap:4vw;
+    margin-right: 4%;
+    margin-left: 8%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 }
-
 .nomeLogin{
     font-size: 3vw;
     margin-top: 3.5vw;
@@ -164,11 +190,10 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     padding: 2vw;
     background-color:rgb(2, 18, 37); 
     overflow: hidden;
-
-    height: 30vw;
+    overflow-y: scroll;
+    height: 60vh;
     gap:1.5vw;
     width: 25vw;
-    overflow-y: scroll;
     display: flex;
     flex-direction: column;
 }

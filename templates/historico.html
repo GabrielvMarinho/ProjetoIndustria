@@ -4,11 +4,14 @@
 
 {% block content %}
 <h1>historico de notificações</h1>
-{% for i in notificacoes %}
-    <h1>{{i.id}}</h1>
-    <h1>{{i.data}}</h1>
-    <h1>{{i.dados}}</h1>
-
-{% endfor %}
+<section class="sectionHistorico">
+    {% for i in notificacoes %}
+    <div class="historico">
+        <p>{{i.id}}</p>
+        <p>{{i.data}}</p>
+        <p>{{i.dados}}</p>
+    </div>
+    {% endfor %}
+</section>
     
 {% endblock %}
