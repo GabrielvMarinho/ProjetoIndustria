@@ -83,8 +83,9 @@
         const url = tipoMensagem === "Grande"? grande : tipoMensagem === "Médio" ? medio : pequeno
 
         const notif = document.getElementById("notificacoes")
-        notif.innerHTML += `
-        <div class="notificacao ${tipoMensagem}">
+        const div = document.createElement("div")
+        div.classList = `notificacao ${tipoMensagem}`
+        div.innerHTML = `
             <img class = "icone" src=${url}> 
             <div class="separaIconeTexto">
                 <h1 class="texto">${obj["mensagem"]}</h1>
@@ -92,8 +93,9 @@
                 <h2 class="status">${obj["mensagem2"]}</h2>
 
             </div>
-        </div>
         `
+        notif.insertBefore(div, notif.children[1]);
+
     })
 
     //atualizar os gráficos toda vez que for mandado dado novo graficos
