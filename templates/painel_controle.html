@@ -54,12 +54,34 @@
                 scales: {
                     r: {
                             beginAtZero:true,
-                            max:100,
                             pointLabels: {
-                                color: 'white' // Cor dos rótulos dos eixos (como "Vibração", "Temperatura")
+                                color: 'white'
                             },
                         }
                     
+                },
+                plugins:{
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        
+                        enabled: true,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.raw; // Mostra o valor do dado
+                                return label;
+                            },
+                            title: function(context) {
+                                return context[0].label; // Mostra o valor da label
+                            }
+                        }
+                    }
+
                 }
             }
         });
