@@ -34,10 +34,13 @@ body::before {
 }
 
 .divLogin{
-    box-shadow: 0 4px 150px rgba(255, 255, 255, 0.1); /* Aumentado o raio de desfoque para 40px */
 
-    background: rgb(0,34,70);
-background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
+
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    background: #5867C2;
+
+    
+    
     width: 25vw;
     min-height: fit-content;
     height: 30vw;
@@ -52,14 +55,18 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 }
 #graficos{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     overflow: hidden;
-    overflow-y: scroll;
-    height: 38.5vw;
+    overflow-x: scroll;
+    max-height: 55vw;
     width: 70%;
     flex-wrap: wrap;
     align-items: center;
+    padding-bottom: 1vw;
+}
+.divMaquina{
+    width: 19vw;
 }
 .logadoComo{
     text-align: left;
@@ -76,12 +83,8 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 
     gap:4vw;
 }
-.divMaquina{
-    width: 17vw;
-}
-#graficos div{
-    height: fit-content;
-}
+
+
 .conteudoPagina{
     gap:4vw;
     margin-right: 4%;
@@ -90,6 +93,8 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    height: 90vh;
+
 }
 .nomeLogin{
     font-size: 3vw;
@@ -161,13 +166,13 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
     border-radius: 6px;
 }
 .Grande {
-    background-color: rgba(255, 0, 0, 0.7);
+    background-color: rgba(255, 0, 0, 0.85);
 }
 .Médio {
-    background-color: rgba(236, 94, 0, 0.747);
+    background-color: rgba(236, 94, 0, 0.85);
 }
 .Pequeno {
-    background-color: rgba(216, 184, 0, 0.781);
+    background-color: rgba(216, 184, 0, 0.85);
 }
 
 .icone {
@@ -193,10 +198,10 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 #notificacoes{
     border-radius: 1vw;
     padding: 2vw;
-    background-color:rgb(2, 18, 37); 
+    background-color: #5867C2;
     overflow: hidden;
     overflow-y: scroll;
-    height: 60vh;
+    height: 72vh;
     gap:1.5vw;
     width: 25vw;
     display: flex;
@@ -210,17 +215,18 @@ background: radial-gradient(circle, rgba(0,34,70,1) 0%, rgba(0,0,50,1) 100%);
 
 ::-webkit-scrollbar-track {
     border-radius: 2vw;
-    background: #ffffff11; /* Cor da parte que se arrasta */
+    background: #959fe6; /* Cor da parte que se arrasta */
+
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 2vw;
-    background: #ffffff9c; /* Cor da parte que se arrasta */
+    background: #ffffffe7; /* Cor da parte que se arrasta */
     
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #ffffff3a; /* Cor da parte que se arrasta */
+    background: #dbd1fce7; /* Cor da parte que se arrasta */
 }
 
 
