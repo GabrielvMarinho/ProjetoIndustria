@@ -128,7 +128,6 @@
     //atualizar os gráficos toda vez que for mandado dado novo graficos
     socket.on('atualizar_dados', (dados)=> {
         console.log("chamou")
-
         Object.entries(dados).forEach(([chave, valor])=>{
             const c = Chart.getChart(`canvas${chave}`)
             c.data.datasets[0].data = valor;
