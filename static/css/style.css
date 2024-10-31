@@ -64,9 +64,10 @@ body::before {
     flex-wrap: wrap;
     align-items: center;
     padding-bottom: 1vw;
+    gap:3vw;
 }
 .divMaquina{
-    width: 19vw;
+    width: 16vw;
 }
 .logadoComo{
     text-align: left;

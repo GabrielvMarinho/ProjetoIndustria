@@ -6,6 +6,7 @@ from time import sleep
 from models import Maquina, Operador
 from singleton import Caretaker
 app, socketio = create_app()
+import math
 
 
 def tarefa():
@@ -18,7 +19,10 @@ def tarefa():
             for maquina in maquinas:
                 for (cDados, vDados), (msgMax, dadoMax),(msgMin, dadoMin), tipoMensagemMax, tipoMensagemMin in zip(maquina.dadosDict.items(), maquina.maxDict.items(), maquina.minDict.items(), maquina.tipoMensagemMax, maquina.tipoMensagemMin):
                     # teste para mandar notificação plo observer:
-                    dado = randint(1, 100)
+
+                    distancia = math.sqrt((dadoMin - dadoMax) ** 2)
+
+                    dado = randint(int(dadoMin-distancia*0.1), int(dadoMax+distancia*0.1))
                     
                     #mudando o valor dos dados da máquina em si
                     maquina.dadosDict[cDados] = dado

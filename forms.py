@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, FloatField
 from wtforms import RadioField, SubmitField
 from wtforms.validators import DataRequired
 
@@ -14,12 +14,12 @@ class cadastroMaquina(FlaskForm):
 
 class dadosMaquina(FlaskForm):
     nomedado = StringField("dado")
-    minMaquina = IntegerField('Min')
+    minMaquina = FloatField('Min')
     msgErroMin = StringField('Mensagem de erro')
     optionMin = RadioField('Grau de Importância:', 
                         choices=[('Pequeno', 'Pequeno'), ('Médio', 'Médio'), ('Grande', 'Grande')],
                         validators=[DataRequired()])
-    maxMaquina = IntegerField('Max')
+    maxMaquina = FloatField('Max')
     msgErroMax = StringField ('Mensagem de erro')
     optionMax = RadioField('Grau de Importância:', 
                         choices=[('Pequeno', 'Pequeno'), ('Médio', 'Médio'), ('Grande', 'Grande')],
