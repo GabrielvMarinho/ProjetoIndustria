@@ -3,11 +3,11 @@
 {% block title %} Add Relação {% endblock %}
 
 {% block content %}
-<h1>historico de notificações</h1>
+<section class="historicoSection">
+<h1 class="tituloGenerico">HISTÓRICO DE NOTIFICAÇÕES</h1>
 <section class="sectionHistorico">
     {% for i in notificacoes %}
     <div class="historico">
-        <p>{{i.id}}</p>
         <p>{{i.data}}</p>
         <p>{{i.dados}}</p>
     </div>

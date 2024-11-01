@@ -3,6 +3,7 @@
     font-family: "Poppins";
     padding: 0;
     margin:0;
+    list-style: none;
 }
 
 body {
@@ -38,9 +39,6 @@ body::before {
 
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
     background: #5867C2;
-
-    
-    
     width: 25vw;
     min-height: fit-content;
     height: 30vw;
@@ -49,6 +47,10 @@ body::before {
     flex-direction: column;
     gap:2.5vw;
 
+}
+.flex{
+    display: flex;
+    justify-content: center;
 }
 .modal{
     display:none;
@@ -68,6 +70,32 @@ body::before {
 }
 .divMaquina{
     width: 16vw;
+}
+.mudarRel{
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+.removerRel{
+    font-size: 1.2vw;
+    padding: 0.5vw;
+    padding-inline: 5vw;
+    border-radius: 10px;
+    border: #bd2a1fc0;
+    margin-inline: 1vw;
+    background-color: #bd2a1fc0;
+    color: white;
+}
+.adicionarRel{
+    font-size: 1.2vw;
+
+    padding: 0.5vw;
+    padding-inline: 5vw;
+    border-radius: 10px;
+    border: #4a8a1fd5;
+    margin-inline: 1vw;
+    background-color: #4a8a1fd5;
+    color: white;
 }
 .logadoComo{
     text-align: left;
@@ -115,14 +143,16 @@ body::before {
     color: rgba(255, 255, 255, 0.7);
 
 }
-.boxform{
+.boxForm{
     width: 18vw;;
-    line-height: 1.7;
-
+    line-height: 2;
+    border: 0;
+    border-radius: 0.5vw;
 }
 
 .labelform{
     font-size: 0.9vw;
+    justify-content: start;
 }
 
 .boxname{
@@ -134,12 +164,12 @@ body::before {
 }
 
 .botaoForm{
-    width: 16vw;
-    height: 3vw;
-    border-radius: 15px;
+    padding: 0.5vw;
+    padding-inline: 5vw;
+    border-radius: 10px;
+    border: #1f34bd;
     background-color: #1f34bd;
     color: white;
-    
 }
 .form{
     display: flex;
@@ -187,11 +217,14 @@ body::before {
     color: white;
     font-weight: 600;
 }
-#notificacoes h1{
-    font-size: 1.5vw;
-    line-height: 140%;
+.tituloGenerico{
+    font-size: 3vw;
+    text-shadow: 2px 2px 7px rgba(61, 26, 119, 0.2);
+
+    
 
 }
+
 .tituloNotif{
     margin-bottom: 1vw;
     font-size: 2.5vw !important;
@@ -400,7 +433,124 @@ body::before {
 }
 
 .menu a:hover {
-    background-color: #575f79; /* Cor de fundo diferente quando o cursor estiver em cima */
+    background-color: #697ec0; /* Cor de fundo diferente quando o cursor estiver em cima */
     color: #E0E0E0; /* Clareia a cor do texto */
     font-weight: bold; /* Torna o texto negrito ao passar o cursor */
+}
+.sectionHistorico{
+    height: 30vw;
+    width: 60vw;
+    overflow-y: scroll;
+}
+.historico{
+    display: flex;
+    justify-content: center;
+}
+.adicionarMaquina{
+    display: flex;
+    flex-direction: column;
+    gap:1vw;
+}
+.adicionandoAtributos{
+    display: flex;
+    gap: 2vw;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.addAtributos{
+    font-size: 1.2vw;
+    padding: 0.5vw;
+    padding-inline: 5vw;
+    border-radius: 10px;
+    border: #4a8a1fd5;
+    margin-inline: 1vw;
+    background-color: #4a8a1fd5;
+    color: white;
+}
+
+.TextoComum{
+    font-size: 1.6vw;
+}
+.sectionAddAtributos, .mudarRel, .section_minhas_maquinas, .formCriarAtributo, .historicoSection, .adicionarMaquina{
+    height: 100%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap:1.5vw;
+}
+
+
+
+.formAtributos{
+    display: flex;
+    gap:1.5vw;
+    flex-direction: column;
+}
+#optionMin, #optionMax{
+    text-align: left;
+    
+}
+.nomeAtributos{
+    padding: 1.5vw;
+    
+    background-color: #5867C2;
+    border-radius: 15px;
+}
+
+.atributosMinimos{
+    padding: 30px;
+    width: 18vw;
+    background-color: #5867C2;
+    border-radius: 15px;
+}
+
+.atributosMaximos{
+    padding: 30px;
+    width: 20vw;
+
+    background-color: #5867C2;
+    border-radius: 15px;
+    
+}
+
+.divMineMax{
+    display: flex;
+    gap: 7vw;
+}
+
+
+.nomeatributo{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 80%;
+    margin-inline: auto;
+
+}
+
+.nomeMensagemErro{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 80%;
+    margin-inline: auto;
+    margin-top: 1.5vw;
+}
+
+.caixaNomeAtributos{
+    width: 80%;
+    border-radius: 0.5vw;
+    border: 0;
+    padding: 0.2vw;
+}
+.caixaNomeAtributosMaior{
+    width: 100%;
+    border-radius: 0.5vw;
+    border: 0;
+    padding: 0;
+}
+
+.grauImportanciaAtributos{
+    margin-top: 1.5vw;
 }

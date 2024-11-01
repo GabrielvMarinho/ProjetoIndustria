@@ -4,16 +4,18 @@
 
 {% block content %}
 
+<section class="adicionarMaquina">
+    <h1 class="tituloGenerico"> CRIAR MÁQUINAS</h1>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{form.nome.label}} <br>
+            {{form.nome(class="caixaNomeAtributos")}}
+        </p> 
+        <br>
 
-<h1> Criar Máquinas</h1>
-<form method="post">
-    {{ form.hidden_tag() }}
-    <p>
-        {{form.nome.label}} <br>
-        {{form.nome()}}
-    </p> 
-
-    <p> {{form.submit()}} </p>
-</form>
+        <p> {{form.submit(class="botaoForm")}} </p>
+    </form>
+</section>
 
 {% endblock %}

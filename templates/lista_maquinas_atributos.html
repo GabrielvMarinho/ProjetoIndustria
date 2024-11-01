@@ -4,8 +4,18 @@
 
 {% block content %}
 
-{% for i in maquinas %}
-    <p>{{i.nome}}add atributo<a href="{{url_for('add_atributo', id = i.id)}}">Adicionar atributos na máquina</a></p>
-{% endfor %}
+<section class="sectionAddAtributos"> 
+
+    <h1 class="tituloGenerico"> ATRIBUTOS DAS MÁQUINAS </h1>
+
+    <div class="adicionandoAtributos">
+        {% for i in maquinas %}
+        <div class="flex">
+            <p class="TextoComum" >{{i.nome}} <a href="{{url_for('add_atributo', id = i.id)}}" class="addAtributos"> adicionar </a></p>
+        </div>
+            {% endfor %}
+    </div>
+
+</section>
     
 {% endblock %}

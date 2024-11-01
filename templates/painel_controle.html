@@ -47,6 +47,8 @@
             data: {
                 labels: m.dados,
                 datasets: [{
+                    backgroundColor: 'rgba(61, 68, 163, 0.4\)', // cor de preenchimento das barras
+                    borderColor: 'rgba(61, 68, 163, 0.9)',       // cor da borda das barras
                     borderWidth: 1
                 }]
             },
@@ -132,7 +134,6 @@
             const c = Chart.getChart(`canvas${chave}`)
             c.data.datasets[0].data = valor;
             c.update();
-            
 
         });
         

@@ -25,6 +25,7 @@ def register_routes(app, db, socketio):
     @app.route("/retornar_user")
     def retornar_user():
         return current_user
+    
     #routes relacionado aos atributos -----------------------------------------------------
     @app.route("/lista_maquinas_atributos")
     @login_required
@@ -74,7 +75,11 @@ def register_routes(app, db, socketio):
             dados.append(i.dadosDict)
         return jsonify(dados)
 
-    
+
+    @app.route("/rota_da_bi")
+    def rota_da_bi():
+        
+        return "asdnaosidnaoiusd"
 
 
 

@@ -22,7 +22,7 @@ def tarefa():
 
                     distancia = math.sqrt((dadoMin - dadoMax) ** 2)
 
-                    dado = randint(int(dadoMin-distancia*0.1), int(dadoMax+distancia*0.1))
+                    dado = randint(int(dadoMin-distancia*0.01), int(dadoMax+distancia*0.01))
                     
                     #mudando o valor dos dados da máquina em si
                     maquina.dadosDict[cDados] = dado
@@ -39,7 +39,7 @@ def tarefa():
                                 notificacaoDict = {
                                     "mensagem":maquina.nome,
                                     "mensagem1":msgMax,
-                                    "mensagem2":"status: "+cDados+"-"+str(dado),
+                                    "mensagem2":"status | "+cDados+": "+str(dado),
                                     "tipoMensagem": tipoMensagemMax,
                                     "idMaquina": maquina.id,
                                     "idOperador": operador.id    
@@ -58,7 +58,7 @@ def tarefa():
                                 notificacaoDict = {
                                     "mensagem": maquina.nome,
                                     "mensagem1":msgMin,
-                                    "mensagem2":"status: "+cDados+"-"+str(dado),
+                                    "mensagem2":"status | "+cDados+": "+str(dado),
                                     "tipoMensagem": tipoMensagemMin,
                                     "idMaquina": maquina.id,
                                     "idOperador": operador.id    
@@ -80,7 +80,7 @@ def tarefa():
 
                 socketio.emit('atualizar_dados',dados, room=operador.id)
 
-        sleep(5)
+        sleep(2)
 
 
 

@@ -13,7 +13,7 @@ class cadastroMaquina(FlaskForm):
     submit = SubmitField('criar')
 
 class dadosMaquina(FlaskForm):
-    nomedado = StringField("dado")
+    nomedado = StringField("Atributo:")
     minMaquina = FloatField('Min')
     msgErroMin = StringField('Mensagem de erro')
     optionMin = RadioField('Grau de Importância:', 
