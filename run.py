@@ -89,5 +89,5 @@ def tarefa():
 if __name__ == "__main__":
     thread = threading.Thread(target=tarefa)
     thread.start()
-    socketio.run(app)
+    socketio.run(app, allow_unsafe_werkzeug=True)
 
